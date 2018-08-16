@@ -211,7 +211,7 @@
                                     <?php echo $program[$i]->satuan;?>
                                   </td>
                                   <td class=" last" style="vertical-align: middle; text-align: center; ">
-                                  <a href="<?php echo base_url()?>user/evaluasi_data/<?php echo $program[0]->cc_id?>"><button type="submit" class="btn btn-primary btn-s">Evaluasi</button></a>
+                                  <a href="<?php echo base_url()?>user/evaluasi_data/<?php echo $program[$i]->cc_id?>"><button type="submit" class="btn btn-primary btn-s">Update</button></a>
 
                                   </td>
                                 </tr>
@@ -521,122 +521,6 @@
                               
                           </tbody>
                         </table>
-                      
-
-
-
-
-
-            
-
-
-
-
-            
-
-
-
-
-
-            <!-- <div class="row">
-                <div class="col-lg-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>Tambah Prioritas 2</h5>
-                        <div class="ibox-tools">
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <i class="fa fa-wrench"></i>
-                            </a>
-                            <a class="close-link">
-                                <i class="fa fa-times"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="ibox-content">
-                        <?php ?>
-                            <div class="row">
-                              <div class="col-md-12">
-                                <div class="form-group">
-                                  <h5>Nama Prioritas 2</h5>
-                                  <input type="text" class="form-control" name="program" autocomplete="off" required>
-                                </div>
-                              </div>
-                              <div class="col-md-12">
-                                <div class="form-group">
-                                  <h5>Deskripsi Prioritas 2</h5>
-                                  <textarea id="desc" name="deskripsi" class="resizable_textarea form-control input" required></textarea>
-                                </div>
-                              </div>              
-                            </div>
-                            
-                            <div class="col-lg-12 text-right">
-                                <div class="hr-line-dashed"></div>
-                                   <button class="btn btn-primary" type="submit"><i class="fa fa-paper-plane "></i>   Submit</button>
-                                  <?php ?>  
-                                </div> 
-                            </div>
-                          </div>
-                </div>
-            </div>
-
-
-
-
-            <div class="row">
-                <div class="col-lg-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>Tambah Prioritas 3</h5>
-                        <div class="ibox-tools">
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <i class="fa fa-wrench"></i>
-                            </a>
-                            <a class="close-link">
-                                <i class="fa fa-times"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="ibox-content">
-                        <?php ?>
-                            <div class="row">
-                              <div class="col-md-12">
-                                <div class="form-group">
-                                  <h5>Nama Prioritas 3</h5>
-                                  <input type="text" class="form-control" name="program" autocomplete="off" required>
-                                </div>
-                              </div>
-                              <div class="col-md-12">
-                                <div class="form-group">
-                                  <h5>Deskripsi Prioritas 3</h5>
-                                  <textarea id="desc" name="deskripsi" class="resizable_textarea form-control input" required></textarea>
-                                </div>
-                              </div>              
-                            </div>
-                            
-                            <div class="col-lg-12 text-right">
-                                <div class="hr-line-dashed"></div>
-                                   <button class="btn btn-primary" type="submit"><i class="fa fa-paper-plane "></i>   Submit</button>
-                                  <?php ?>  
-                                </div> 
-                            </div>
-                          </div>
-                </div>
-            </div> -->
-
-
-
-
-
-
-
-
-
 
                      
                     </div>
