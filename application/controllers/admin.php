@@ -33,9 +33,8 @@ class admin extends CI_Controller {
         $this->load->library('image_lib');
         $this->load->library('form_validation');
 	}
-	public function index()
-	{
 
+	public function dashboard(){
 		$data['jawa'] = $this->model_admin->listjawa();	
 		$data['jakarta'] = $this->model_admin->listjakarta();	
 		$data['kalimantan'] = $this->model_admin->listkalimantan();	
@@ -60,10 +59,260 @@ class admin extends CI_Controller {
 		$data['programkal'] = $this->model_users->program_unitkal();
 		$data['programsum'] = $this->model_users->program_unitsum();
 		$data['programjaw'] = $this->model_users->program_unitjaw();
-		//$data['baru_warrior'] = $this->model_users->baru_warrior();
 
-		//print_r($data['progres']);exit(); 
-		$this->load->view('admin/dashboard_view',$data);
+		// $this->load->view('admin/new/sidebar');
+		// $this->load->view('admin/new/header');		
+		$this->load->view('admin/new/dashboard',$data);
+		// $this->load->view('admin/new/footer');
+	}
+
+	public function head_office(){
+		$data['jawa'] = $this->model_admin->listjawa();	
+		$data['jakarta'] = $this->model_admin->listjakarta();	
+		$data['kalimantan'] = $this->model_admin->listkalimantan();	
+		$data['sumatera'] = $this->model_admin->listsumatra();	
+		$data['HO'] = $this->model_admin->listho();	
+		$data['progres'] = $this->model_admin->progresHO();
+		$data['progresbo'] = $this->model_admin->progresBO();
+		$data['progresvparea'] = $this->model_admin->progresVPAREA();
+		$data['progrescorporate'] = $this->model_admin->progrescorporate();
+		$data['progreshead'] = $this->model_admin->progresHead();
+		$data['progresbranch'] = $this->model_admin->progresBranch();
+
+		$bobot['bobot'] = $this->model_admin->bobot()->result();
+		foreach ($bobot['bobot'] as $b) {
+			$data['leaderhead'] = $this->model_admin->leaderHead($b->bobot1,$b->bobot2,$b->bobot3,$b->bobot4,$b->bobot5,$b->bobot6);
+		}
+		foreach ($bobot['bobot'] as $a) {
+			$data['leaderbranch'] = $this->model_admin->leaderbranch($a->bobot1,$a->bobot2,$a->bobot3,$a->bobot4,$a->bobot5,$a->bobot6);
+		}
+		$data['programho'] = $this->model_users->program_unitho();
+		$data['programjkt'] = $this->model_users->program_unitjkt();
+		$data['programkal'] = $this->model_users->program_unitkal();
+		$data['programsum'] = $this->model_users->program_unitsum();
+		$data['programjaw'] = $this->model_users->program_unitjaw();
+
+		// $this->load->view('admin/new/sidebar');
+		// $this->load->view('admin/new/header');		
+		$this->load->view('admin/new/head_office',$data);
+		// $this->load->view('admin/new/footer');
+	}
+
+	public function branch_office_sumatera(){
+		$data['jawa'] = $this->model_admin->listjawa();	
+		$data['jakarta'] = $this->model_admin->listjakarta();	
+		$data['kalimantan'] = $this->model_admin->listkalimantan();	
+		$data['sumatera'] = $this->model_admin->listsumatra();	
+		$data['HO'] = $this->model_admin->listho();	
+		$data['progres'] = $this->model_admin->progresHO();
+		$data['progresbo'] = $this->model_admin->progresBO();
+		$data['progresvparea'] = $this->model_admin->progresVPAREA();
+		$data['progrescorporate'] = $this->model_admin->progrescorporate();
+		$data['progreshead'] = $this->model_admin->progresHead();
+		$data['progresbranch'] = $this->model_admin->progresBranch();
+
+		$bobot['bobot'] = $this->model_admin->bobot()->result();
+		foreach ($bobot['bobot'] as $b) {
+			$data['leaderhead'] = $this->model_admin->leaderHead($b->bobot1,$b->bobot2,$b->bobot3,$b->bobot4,$b->bobot5,$b->bobot6);
+		}
+		foreach ($bobot['bobot'] as $a) {
+			$data['leaderbranch'] = $this->model_admin->leaderbranch($a->bobot1,$a->bobot2,$a->bobot3,$a->bobot4,$a->bobot5,$a->bobot6);
+		}
+		$data['programho'] = $this->model_users->program_unitho();
+		$data['programjkt'] = $this->model_users->program_unitjkt();
+		$data['programkal'] = $this->model_users->program_unitkal();
+		$data['programsum'] = $this->model_users->program_unitsum();
+		$data['programjaw'] = $this->model_users->program_unitjaw();
+		
+		// $this->load->view('admin/new/sidebar');
+		// $this->load->view('admin/new/header');		
+		$this->load->view('admin/new/branch_sumatera',$data);
+		//$this->load->view('admin/new/footer');
+	}
+
+	public function branch_office_jakarta(){
+		$data['jawa'] = $this->model_admin->listjawa();	
+		$data['jakarta'] = $this->model_admin->listjakarta();	
+		$data['kalimantan'] = $this->model_admin->listkalimantan();	
+		$data['sumatera'] = $this->model_admin->listsumatra();	
+		$data['HO'] = $this->model_admin->listho();	
+		$data['progres'] = $this->model_admin->progresHO();
+		$data['progresbo'] = $this->model_admin->progresBO();
+		$data['progresvparea'] = $this->model_admin->progresVPAREA();
+		$data['progrescorporate'] = $this->model_admin->progrescorporate();
+		$data['progreshead'] = $this->model_admin->progresHead();
+		$data['progresbranch'] = $this->model_admin->progresBranch();
+
+		$bobot['bobot'] = $this->model_admin->bobot()->result();
+		foreach ($bobot['bobot'] as $b) {
+			$data['leaderhead'] = $this->model_admin->leaderHead($b->bobot1,$b->bobot2,$b->bobot3,$b->bobot4,$b->bobot5,$b->bobot6);
+		}
+		foreach ($bobot['bobot'] as $a) {
+			$data['leaderbranch'] = $this->model_admin->leaderbranch($a->bobot1,$a->bobot2,$a->bobot3,$a->bobot4,$a->bobot5,$a->bobot6);
+		}
+		$data['programho'] = $this->model_users->program_unitho();
+		$data['programjkt'] = $this->model_users->program_unitjkt();
+		$data['programkal'] = $this->model_users->program_unitkal();
+		$data['programsum'] = $this->model_users->program_unitsum();
+		$data['programjaw'] = $this->model_users->program_unitjaw();
+
+		// $this->load->view('admin/new/sidebar');
+		// $this->load->view('admin/new/header');		
+		$this->load->view('admin/new/branch_jakarta',$data);
+		// $this->load->view('admin/new/footer');
+		
+	}	
+
+	public function branch_office_jawa(){
+		$data['jawa'] = $this->model_admin->listjawa();	
+		$data['jakarta'] = $this->model_admin->listjakarta();	
+		$data['kalimantan'] = $this->model_admin->listkalimantan();	
+		$data['sumatera'] = $this->model_admin->listsumatra();	
+		$data['HO'] = $this->model_admin->listho();	
+		$data['progres'] = $this->model_admin->progresHO();
+		$data['progresbo'] = $this->model_admin->progresBO();
+		$data['progresvparea'] = $this->model_admin->progresVPAREA();
+		$data['progrescorporate'] = $this->model_admin->progrescorporate();
+		$data['progreshead'] = $this->model_admin->progresHead();
+		$data['progresbranch'] = $this->model_admin->progresBranch();
+
+		$bobot['bobot'] = $this->model_admin->bobot()->result();
+		foreach ($bobot['bobot'] as $b) {
+			$data['leaderhead'] = $this->model_admin->leaderHead($b->bobot1,$b->bobot2,$b->bobot3,$b->bobot4,$b->bobot5,$b->bobot6);
+		}
+		foreach ($bobot['bobot'] as $a) {
+			$data['leaderbranch'] = $this->model_admin->leaderbranch($a->bobot1,$a->bobot2,$a->bobot3,$a->bobot4,$a->bobot5,$a->bobot6);
+		}
+		$data['programho'] = $this->model_users->program_unitho();
+		$data['programjkt'] = $this->model_users->program_unitjkt();
+		$data['programkal'] = $this->model_users->program_unitkal();
+		$data['programsum'] = $this->model_users->program_unitsum();
+		$data['programjaw'] = $this->model_users->program_unitjaw();
+
+		// $this->load->view('admin/new/sidebar');
+		// $this->load->view('admin/new/header');		
+		$this->load->view('admin/new/branch_jawa',$data);
+		//$this->load->view('admin/new/footer');
+	}
+
+	public function branch_office_kalimantan(){
+		$data['jawa'] = $this->model_admin->listjawa();	
+		$data['jakarta'] = $this->model_admin->listjakarta();	
+		$data['kalimantan'] = $this->model_admin->listkalimantan();	
+		$data['sumatera'] = $this->model_admin->listsumatra();	
+		$data['HO'] = $this->model_admin->listho();	
+		$data['progres'] = $this->model_admin->progresHO();
+		$data['progresbo'] = $this->model_admin->progresBO();
+		$data['progresvparea'] = $this->model_admin->progresVPAREA();
+		$data['progrescorporate'] = $this->model_admin->progrescorporate();
+		$data['progreshead'] = $this->model_admin->progresHead();
+		$data['progresbranch'] = $this->model_admin->progresBranch();
+
+		$bobot['bobot'] = $this->model_admin->bobot()->result();
+		foreach ($bobot['bobot'] as $b) {
+			$data['leaderhead'] = $this->model_admin->leaderHead($b->bobot1,$b->bobot2,$b->bobot3,$b->bobot4,$b->bobot5,$b->bobot6);
+		}
+		foreach ($bobot['bobot'] as $a) {
+			$data['leaderbranch'] = $this->model_admin->leaderbranch($a->bobot1,$a->bobot2,$a->bobot3,$a->bobot4,$a->bobot5,$a->bobot6);
+		}
+		$data['programho'] = $this->model_users->program_unitho();
+		$data['programjkt'] = $this->model_users->program_unitjkt();
+		$data['programkal'] = $this->model_users->program_unitkal();
+		$data['programsum'] = $this->model_users->program_unitsum();
+		$data['programjaw'] = $this->model_users->program_unitjaw();
+
+		// $this->load->view('admin/new/sidebar');
+		// $this->load->view('admin/new/header');		
+		$this->load->view('admin/new/branch_kalimantan',$data);
+		//$this->load->view('admin/new/footer');
+	}
+
+	public function average_direktorat(){
+		$data['jawa'] = $this->model_admin->listjawa();	
+		$data['jakarta'] = $this->model_admin->listjakarta();	
+		$data['kalimantan'] = $this->model_admin->listkalimantan();	
+		$data['sumatera'] = $this->model_admin->listsumatra();	
+		$data['HO'] = $this->model_admin->listho();	
+		$data['progres'] = $this->model_admin->progresHO();
+		$data['progresbo'] = $this->model_admin->progresBO();
+		$data['progresvparea'] = $this->model_admin->progresVPAREA();
+		$data['progrescorporate'] = $this->model_admin->progrescorporate();
+		$data['progreshead'] = $this->model_admin->progresHead();
+		$data['progresbranch'] = $this->model_admin->progresBranch();
+
+		$bobot['bobot'] = $this->model_admin->bobot()->result();
+		foreach ($bobot['bobot'] as $b) {
+			$data['leaderhead'] = $this->model_admin->leaderHead($b->bobot1,$b->bobot2,$b->bobot3,$b->bobot4,$b->bobot5,$b->bobot6);
+		}
+		foreach ($bobot['bobot'] as $a) {
+			$data['leaderbranch'] = $this->model_admin->leaderbranch($a->bobot1,$a->bobot2,$a->bobot3,$a->bobot4,$a->bobot5,$a->bobot6);
+		}
+		$data['programho'] = $this->model_users->program_unitho();
+		$data['programjkt'] = $this->model_users->program_unitjkt();
+		$data['programkal'] = $this->model_users->program_unitkal();
+		$data['programsum'] = $this->model_users->program_unitsum();
+		$data['programjaw'] = $this->model_users->program_unitjaw();
+
+		// $this->load->view('admin/new/sidebar');
+		// $this->load->view('admin/new/header');		
+		$this->load->view('admin/new/average_direktorat',$data);
+		//$this->load->view('admin/new/footer');
+	}
+
+	public function average_vparea(){
+		$data['jawa'] = $this->model_admin->listjawa();	
+		$data['jakarta'] = $this->model_admin->listjakarta();	
+		$data['kalimantan'] = $this->model_admin->listkalimantan();	
+		$data['sumatera'] = $this->model_admin->listsumatra();	
+		$data['HO'] = $this->model_admin->listho();	
+		$data['progres'] = $this->model_admin->progresHO();
+		$data['progresbo'] = $this->model_admin->progresBO();
+		$data['progresvparea'] = $this->model_admin->progresVPAREA();
+		$data['progrescorporate'] = $this->model_admin->progrescorporate();
+		$data['progreshead'] = $this->model_admin->progresHead();
+		$data['progresbranch'] = $this->model_admin->progresBranch();
+
+		$bobot['bobot'] = $this->model_admin->bobot()->result();
+		foreach ($bobot['bobot'] as $b) {
+			$data['leaderhead'] = $this->model_admin->leaderHead($b->bobot1,$b->bobot2,$b->bobot3,$b->bobot4,$b->bobot5,$b->bobot6);
+		}
+		foreach ($bobot['bobot'] as $a) {
+			$data['leaderbranch'] = $this->model_admin->leaderbranch($a->bobot1,$a->bobot2,$a->bobot3,$a->bobot4,$a->bobot5,$a->bobot6);
+		}
+		$data['programho'] = $this->model_users->program_unitho();
+		$data['programjkt'] = $this->model_users->program_unitjkt();
+		$data['programkal'] = $this->model_users->program_unitkal();
+		$data['programsum'] = $this->model_users->program_unitsum();
+		$data['programjaw'] = $this->model_users->program_unitjaw();
+
+		// $this->load->view('admin/new/sidebar');
+		// $this->load->view('admin/new/header');		
+		$this->load->view('admin/new/average_vparea',$data);
+		//$this->load->view('admin/new/footer');
+	}
+
+	function progress_program($unit)
+	{	
+		$month = 7;
+		//print_r($month);
+		$data["unit"]=$unit;
+		$user = $unit;
+		$data['jumlahprogram']	= $this->model_users->jumlah_program_jalan();
+		$data['nilairealisasi']	= $this->model_users->program_unit($unit);
+		$data['program'] = $this->model_users->program_unit($unit);
+		$data['programdefault'] = $this->model_users->program_jalan();
+		$data['max'] = $this->model_users->max_bulan();
+		/*if(!$data['nilairealisasi']) { $data['rerata'] =0; } else {
+		$data['rerata'] = $data['nilairealisasi'][0]->Total/$data['jumlahprogram']; }*/
+		//print_r($data['program']);exit();
+
+		$this->load->view('admin/progress_program',$data);
+	}
+
+	public function logout()
+	{
+		$this->session->sess_destroy();
+		redirect('login');
 	}
 
 	public function dashboard_warrior()
@@ -704,12 +953,6 @@ class admin extends CI_Controller {
 		        
 		      }
 			}
-
-	function logout()
-	{
-		$this->session->sess_destroy();
-		redirect('login');
-	}
 
 }
 

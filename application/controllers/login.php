@@ -74,7 +74,7 @@ class Login extends CI_Controller {
 			    'role'  	=> $d->role
 			);
 			$this->session->set_userdata($newdata);
-			redirect('admin');
+			redirect('admin/dashboard');
 			}
 		}
 }
