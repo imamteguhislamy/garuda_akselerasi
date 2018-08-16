@@ -23,6 +23,17 @@ class model_admin extends CI_Model {
 		}
 	}
 
+	// public function sasaran() {
+	// 	//Query mencari record berdasarkan ID
+	// 	$hasil = $this->db->query("SELECT * FROM cc_sasaran");
+	// 	if($hasil->num_rows() > 0){
+	// 		return $hasil->result();
+	// 	}
+	// 	else {
+	// 		return array();
+	// 	}
+	// }
+
 	public function tambah_program($data_penilaian2){
 		//Quert insert into
 		$awal = strtotime($data_penilaian2['start_month']);
@@ -35,6 +46,14 @@ class model_admin extends CI_Model {
 		$this->db->query("insert into cc_program (cc_detail,cc_desc,cc_time,status,start_month,end_month) values (?,?,?,?,?,?)", $insertData);
 /*		$this->db->insert('tb_penilaian2', $data_penilaian2,"",$rata);*/
 	}
+
+// 	public function tambah_sasaran($data){
+// 		//Quert insert into
+		
+// 		//print_r($data_penilaian2['status']);exit();
+// 		$this->db->insert('cc_sasaran', $data);
+// /*		$this->db->insert('tb_penilaian2', $data_penilaian2,"",$rata);*/
+// 	}
 
 	public function update_program($id,$data_penilaian2){
 		//Quert insert into

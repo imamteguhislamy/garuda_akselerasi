@@ -57,7 +57,7 @@
                         <a href=""><i class="fa fa-edit"></i> <span class="nav-label">Culture Programs</span><span class="fa fa-caret-down pull-right"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="<?php echo base_url()?>admin/program"><i class="fa fa-pencil"></i> List Program</a></li>
-                            <li><a href="<?php echo base_url()?>admin/tambah_program"><i class="fa fa-bar-chart-o"></i> Tambah Program</a></li>
+                            <!-- <li><a href="<?php echo base_url()?>admin/tambah_program1"><i class="fa fa-bar-chart-o"></i> Tambah Program</a></li> -->
                             <!-- <li><a href="<?php echo base_url()?>admin/progress_program"><i class="fa fa-bar-chart-o"></i> Progress Program</a></li> -->
                         </ul>
                     </li>
@@ -133,8 +133,8 @@
                             </a>
                         </div>
                     </div>
-                    <div class="ibox-content">
-                        <?php echo form_open_multipart('admin/tambah_program')?>
+                    <!-- <div class="ibox-content">
+                        <?php )?>
                             <div class="row">
                               <div class="col-md-12">
                                 <div class="form-group">
@@ -176,7 +176,7 @@
                                    <button class="btn btn-primary" type="submit"><i class="fa fa-paper-plane "></i>   Submit</button>
                                   <?php echo form_close()?>  
                                 </div> 
-                            </div>
+                            </div> -->
                           </div>
                 </div>
             </div>

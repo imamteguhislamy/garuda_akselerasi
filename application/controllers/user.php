@@ -27,6 +27,7 @@ class User extends CI_Controller {
 				redirect('login');			
 			}
         date_default_timezone_set('Asia/Jakarta');
+        $this->load->helper('url');
         $this->load->helper('text');
         $this->load->helper('form');
         $this->load->library('image_lib');
@@ -38,7 +39,9 @@ class User extends CI_Controller {
 	}
 	public function index()
 	{
-		$data['program'] = $this->model_users->program($this->session->userdata('username'));
+		$data['program'] = $this->model_users->program($this->session->userdata('username'))->result();
+		$data['programrow'] = $this->model_users->program($this->session->userdata('username'))->num_rows();
+		$data['listsasaran'] = $this->model_users->listsasaran($this->session->userdata('username'));
 		//print_r($data);exit();	
 		$this->load->view('user/index_user',$data);
 	}
@@ -168,6 +171,94 @@ class User extends CI_Controller {
 			
 			}
 	}
+
+	public function tambah_prioritas(){
+		//sebelum mengeksekusi query
+		$this->form_validation->set_rules('desc');
+		$username = $this->session->userdata('username');
+		
+
+			$data_program = array(
+								'unit'				=> $this->session->userdata('username'),
+								'cc_detail'			=> $this->input->post('program'),
+								'cc_desc'			=> $this->input->post('deskripsi'),
+								'target'			=> $this->input->post('target'),
+								'satuan'			=> $this->input->post('satuan'),
+								'start_month'		=> $this->input->post('waktu_pelaksanaan'),
+								'end_month'			=> $this->input->post('batas_pelaksanaan'),
+								'status'			=> $this->input->post('status')
+
+						);
+			$data_program2 = array(
+								'unit'				=> $this->session->userdata('username'),
+								'cc_detail'			=> $this->input->post('program2'),
+								'cc_desc'			=> $this->input->post('deskripsi2'),
+								'target'			=> $this->input->post('target2'),
+								'satuan'			=> $this->input->post('satuan2'),
+								'start_month'		=> $this->input->post('waktu_pelaksanaan'),
+								'end_month'			=> $this->input->post('batas_pelaksanaan'),
+								'status'			=> $this->input->post('status')
+
+						);
+			$data_program3 = array(
+								'unit'				=> $this->session->userdata('username'),
+								'cc_detail'			=> $this->input->post('program3'),
+								'cc_desc'			=> $this->input->post('deskripsi3'),
+								'target'			=> $this->input->post('target3'),
+								'satuan'			=> $this->input->post('satuan3'),
+								'start_month'		=> $this->input->post('waktu_pelaksanaan'),
+								'end_month'			=> $this->input->post('batas_pelaksanaan'),
+								'status'			=> $this->input->post('status')
+
+						);
+			//print_r($data_program);exit();
+			$this->model_users->tambah_prioritas($data_program);
+			$this->model_users->tambah_prioritas($data_program2);
+			$this->model_users->tambah_prioritas($data_program3);
+		// 	$data['prioritas'] = $this->model_users->prioritas();	
+		// //print_r($data); 
+		// $this->load->view('user/index_user',$data);
+			redirect('user');
+			$this->load->view('user/index_user', $data); 
+			}
+
+	public function tambah_sasaran(){
+		//sebelum mengeksekusi query
+		$this->form_validation->set_rules('desc');
+		$username = $this->session->userdata('username');
+		date_default_timezone_set('Asia/Jakarta');
+			$mydate=getdate(date("U"));
+			$jam = date('H:i:s a');
+			$data = "$mydate[month] $mydate[mday], $mydate[year] $jam";
+			$month = date('m');
+		
+
+			$data_program = array(
+								'unit'				=> $this->session->userdata('username'),
+								'nama_sasaran'		=> $this->input->post('nama_sasaran'),
+								'bulan'				=> $month,
+
+						);
+			//print_r($data_program);exit();
+			$this->model_users->tambah_sasaran($data_program);
+			redirect('user');
+			$this->load->view('user/index_user', $data); 
+			}
+
+	public function sasaran()
+	{
+		$data['sasaran'] = $this->model_users->sasaran();	
+		//print_r($data); 
+		$this->load->view('user/index_user',$data);
+	}
+
+	public function prioritas()
+	{
+		$data['prioritas'] = $this->model_users->prioritas();	
+		//print_r($data); 
+		$this->load->view('user/index_user',$data);
+	}
+	
 	
 	public function edit_program($id){
 		//sebelum mengeksekusi query
