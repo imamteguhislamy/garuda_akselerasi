@@ -351,13 +351,42 @@ class admin extends CI_Controller {
 		$this->load->view('admin/list_program',$data);
 	}
 
+	// public function sasaran()
+	// {
+	// 	$data['sasaran'] = $this->model_admin->sasaran();	
+	// 	//print_r($data); 
+	// 	$this->load->view('user/index_user',$data);
+	// }
+
+
+	// public function tambah_program(){
+	// 	//sebelum mengeksekusi query
+	// 	$this->form_validation->set_rules('desc');
+		
+	// 	if ($this->form_validation->run() == FALSE){
+	// 		$this->load->view('admin/tambah_program');
+	// 	}
+	// 	else {
+	// 		$data_program = array(
+	// 							'cc_detail'			=> $this->input->post('program'),
+	// 							'cc_desc'			=> $this->input->post('deskripsi'),
+	// 							'start_month'		=> $this->input->post('waktu_pelaksanaan'),
+	// 							'end_month'			=> $this->input->post('batas_pelaksanaan'),
+	// 							'status'			=> $this->input->post('status')
+
+	// 					);
+	// 		//print_r($data_program);exit();
+	// 		$this->model_admin->tambah_program($data_program);
+	// 		redirect('admin/program'); 
+	// 		}
+	// }
 
 	public function tambah_program(){
 		//sebelum mengeksekusi query
 		$this->form_validation->set_rules('desc');
 		
 		if ($this->form_validation->run() == FALSE){
-			$this->load->view('admin/tambah_program');
+			$this->load->view('user/index_user');
 		}
 		else {
 			$data_program = array(
@@ -370,9 +399,37 @@ class admin extends CI_Controller {
 						);
 			//print_r($data_program);exit();
 			$this->model_admin->tambah_program($data_program);
-			redirect('admin/program'); 
+			// redirect('admin/program'); 
 			}
 	}
+
+	// public function tambah_sasaran(){
+	// 	//sebelum mengeksekusi query
+	// 	$username = $this->session->userdata('username');
+	// 	$this->form_validation->set_rules('desc');
+
+	// 			date_default_timezone_set('Asia/Jakarta');
+	// 		$mydate=getdate(date("U"));
+	// 		$jam = date('H:i:s a');
+	// 		$data = "$mydate[month] $mydate[mday], $mydate[year] $jam";
+	// 		$month = date('m');
+		
+	// 	if ($this->form_validation->run() == FALSE){
+	// 		$this->load->view('user/index_user');
+	// 	}
+	// 	else {
+	// 		$data_program = array(
+	// 							'unit'				=> $this->session->userdata('username'),
+	// 							'nama_sasaran'		=> $this->input->post('nama_sasaran'),
+	// 							'bulan'				=> $month
+
+	// 					);
+	// 		//print_r($data_program);exit();
+	// 		$this->model_admin->tambah_sasaran($data_program);
+	// 		redirect('admin/sasaran'); 
+	// 		}
+	// }
+
 	public function edit_program($id){
 		//sebelum mengeksekusi query
 		$this->form_validation->set_rules('desc');

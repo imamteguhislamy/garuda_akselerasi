@@ -15,7 +15,13 @@ class model_users extends CI_Model {
 
 	public function program($username) {
 		//Query mencari record berdasarkan ID
-		$hasil = $this->db->query("select * from cc_program a LEFT JOIN (select * from cc_program_input where input_user='$username')b on a.cc_detail=b.input_detail where status='Default'");
+		$hasil = $this->db->query("select * from cc_program a LEFT JOIN (select * from cc_program_input where input_user='$username')b on a.cc_detail=b.input_detail where status='Default' and unit='$username'");
+			return $hasil;
+	}
+
+	public function listsasaran($username) {
+		//Query mencari record berdasarkan ID
+		$hasil = $this->db->query("select * from cc_sasaran where unit='$username'");
 		if($hasil->num_rows() > 0){
 			return $hasil->result();
 		}
@@ -30,6 +36,52 @@ class model_users extends CI_Model {
 	public function evaluasi_data($data){
 		//Quert insert into
 		$this->db->insert('cc_program_eval', $data);
+	}
+
+	public function prioritas() {
+		//Query mencari record berdasarkan ID
+		$hasil = $this->db->query("SELECT * FROM cc_program order by status ASC");
+		if($hasil->num_rows() > 0){
+			return $hasil->result();
+		}
+		else {
+			return array();
+		}
+	}
+
+	public function sasaran() {
+		//Query mencari record berdasarkan ID
+		$hasil = $this->db->query("SELECT * FROM cc_sasaran");
+		if($hasil->num_rows() > 0){
+			return $hasil->result();
+		}
+		else {
+			return array();
+		}
+	}
+
+	public function tambah_prioritas($data_penilaian2){
+		//Quert insert into
+		$awal = strtotime($data_penilaian2['start_month']);
+		$akhir = strtotime($data_penilaian2['end_month']);
+		$time=round(($akhir-$awal)/3600/30/24);
+		if(!$data_penilaian2['status']) {$data_penilaian2['status']='Default';}
+		//print_r($data_penilaian2['status']);exit();
+		$insertData = array($data_penilaian2['unit'],$data_penilaian2['cc_detail'],$data_penilaian2['cc_desc'],$data_penilaian2['target'],$data_penilaian2['satuan'],$time,$data_penilaian2['status'],$data_penilaian2['start_month'],$data_penilaian2['end_month']);
+		//print_r($insertData);exit();
+		$this->db->query("insert into cc_program (unit, cc_detail,cc_desc,target,satuan,cc_time,status,start_month,end_month) values (?,?,?,?,?,?,?,?,?)", $insertData);
+/*		$this->db->insert('tb_penilaian2', $data_penilaian2,"",$rata);*/
+	}
+
+	public function tambah_sasaran($data_penilaian2){
+		//Quert insert into
+		
+		
+		//print_r($data_penilaian2['status']);exit();
+		$insertData = array($data_penilaian2['unit'],$data_penilaian2['nama_sasaran'],$data_penilaian2['bulan']);
+		//print_r($insertData);exit();
+		$this->db->query("insert into cc_sasaran (unit, nama_sasaran, bulan) values (?,?,?)", $insertData);
+/*		$this->db->insert('tb_penilaian2', $data_penilaian2,"",$rata);*/
 	}
 	
 	public function findprogram($unit,$id) {

@@ -46,16 +46,6 @@
                     <li>
                            <h4></h4>
                     </li>
-                    <li>
-                        <a href="<?php echo base_url()?>user/warrior" style="color:black">
-                            <i class="fa fa-user"></i> Data Warrior
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url()?>user/timbudaya" style="color:black">
-                            <i class="fa fa-users"></i> Data Tim Implementasi Budaya
-                        </a>
-                    </li>
                 </ul>
             </div>
         </nav>
@@ -65,7 +55,7 @@
           <div class="row">
             <div class="col-md-1 col-sm-1 col-xs-12"></div>
             <div class="col-md-10 col-sm-10 col-xs-12">
-              <h3 >Track - Corporate Culture </h3>
+              <h3 >Garuda Acceleration Program </h3>
               <h4 >Selamat Datang</h4>
               <br/>
               <!-- form grid slider -->
@@ -95,8 +85,8 @@
                   <div class="col-md-9 col-sm-9 col-xs-12">
 
                     <div class="profile_title">
-                      <div class="col-md-6">
-                        <h2>Program Report</h2>
+                      <div class="col-md-12">
+                        <h2>Daftar Sasaran Utama dan Prioritas</h2>
                       </div>
                       
                     </div>
@@ -104,47 +94,133 @@
                     <div class="x_panel ui-ribbon-container ">
 
                       <div class="x_content">
+
+                       <?php if ($listsasaran!=NULL) { ?>
+                      <div class="col-md-12">
+                        <h3>Sasaran Utama : <?php echo $listsasaran[0]->nama_sasaran; ?> </h3>
+                      </div>
+                       <?php } else { ?>
+                      <div class="col-md-12">
+                        <h3>Sasaran Utama : - </h3>
+                        <button type="button" 
+                            class="btn btn-block btn-outline btn-primary" 
+                            data-toggle="modal" 
+                            data-target="#myModal">
+                            Buat Sasaran Utama
+                    </button>
+
+                    <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content animated bounceInRight">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                              <span aria-hidden="true">&times;</span>
+                              <span class="sr-only">Close</span>
+                            </button>
+                            <i class="fa fa-laptop modal-icon"></i>
+                            <h4 class="modal-title">Buat Sasaran Utama</h4>
+                            <small class="font-bold">sasaran utama yang ingin dicapai oleh unit anda</small>
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <div class="ibox float-e-margins">
+                    
+                    <div class="ibox-content">
+                        <?php echo form_open_multipart('user/tambah_sasaran')?>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <h5>Nama Sasaran Utama</h5>
+                                  <input type="text" class="form-control" name="nama_sasaran" autocomplete="off" required>
+                                </div>
+                              </div>
+                               <div class="col-md-6">
+                                  <div class="form-group" id="data_1">
+                                      <label>Mulai Pelaksanaan</label>
+                                      <div class="input-group date">
+                                          <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="date" class="form-control" name="waktu_pelaksanaan" required>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <div class="form-group" id="data_1">
+                                      <label>Batas Pelaksanaan</label>
+                                      <div class="input-group date">
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="date" class="form-control" name="batas_pelaksanaan" required>
+                                      </div>
+                                  </div>
+                              </div>                      
+                            </div>
+                            
+                            <div class="col-lg-12 text-right">
+                                <div class="hr-line-dashed"></div>
+                                   <button class="btn btn-primary" type="submit"><i class="fa fa-paper-plane "></i>   Submit</button>
+                                  <?php echo form_close()?>  
+                                </div> 
+                            </div>
+                          </div>
+                </div>
+            </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                  </div>
+                </div>
+              </div>
+
+                      </div>
+                        <?php } ?>
+
+
+
                        
                          <table class="table  table-hover dataTables-example" style="font-size:14px">
                           <thead>
                             <tr>
                               <th style="width:5%">#</th>
-                              <th style="width:40%">Program</th>
+                              <th style="width:40%">Prioritas</th>
                               <th style="width:20%; text-align:center">Target</th>
                               <th style="width:20%; text-align:center">Satuan</th>
                               <th style="width:15%; text-align:center">Opsi</th>
                             </tr>
                           </thead>
                           <tbody>
-                            <?php 
-                              $a=count($program);
-                              for ($i=0; $i <$a ; $i++) { 
-                              ?>
-                              <tr>
+                            
+                              
 
-                                <?php
-                                if ($program[$i]->input_id) {
+                                <?php if ($program!=NULL) {
 
-                                  ?>
+                                for ($i=0; $i < count($program) ; $i++) { ?>
+                                    
+                                  <tr>
                                   <th scope="row"><?php echo $i+1; ?></th>
                                   <td><?php echo $program[$i]->cc_detail; 
 
                                   ?></td>
                                   <td style="text-align:center">
-                                    <?php echo $program[$i]->input_target;?>
+                                    <?php echo $program[$i]->target;?>
                                   </td> 
                                   <td style="text-align:center">
-                                    <?php echo $program[$i]->input_satuan;?>
+                                    <?php echo $program[$i]->satuan;?>
                                   </td>
                                   <td class=" last" style="vertical-align: middle; text-align: center; ">
-                                  <a href="<?php echo base_url()?>user/evaluasi_data/<?php echo $program[$i]->cc_id?>"><button type="submit" class="btn btn-primary btn-s">Evaluasi</button></a>
+                                  <a href="<?php echo base_url()?>user/evaluasi_data/<?php echo $program[$i]->cc_id?>"><button type="submit" class="btn btn-primary btn-s">Update</button></a>
 
                                   </td>
+                                </tr>
                                   <?php
-                                } else {
+                                  } } else {
                                   ?>
-                                  <th scope="row"><?php echo $i+1; ?></th>
-                                  <td><?php echo $program[$i]->cc_detail; ?></td>
+                                  <tr>
+                                  <th scope="row"><?php echo 1; ?></th>
+                                  <td> belum ada prioritas </td>
                                   <td style="text-align:center">
                                     -
                                   </td> 
@@ -152,7 +228,168 @@
                                     -
                                   </td>
                                   <td class=" last" style="vertical-align: middle; text-align: center; ">
-                                    <button type="button" class="btn btn-success table-hover btn-s" data-toggle="modal"  data-target="#isi<?php echo $program[$i]->cc_id?>">Isi</button>
+                                    <button type="button" class="btn btn-success table-hover btn-s" data-toggle="modal"  data-target="#myModal2">Isi</button>
+
+                                  
+
+
+                                <div class="modal inmodal" id="myModal2" tabindex="-1" role="dialog" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content animated bounceInRight">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                              <span aria-hidden="true">&times;</span>
+                              <span class="sr-only">Close</span>
+                            </button>
+                            <i class="fa fa-laptop modal-icon"></i>
+                            <h4 class="modal-title">Buat Sasaran Utama</h4>
+                            <small class="font-bold">sasaran utama yang ingin dicapai oleh unit anda</small>
+                          </div>
+                          
+
+                          <div class="row">
+                <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Tambah Prioritas 1</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <?php echo form_open_multipart('user/tambah_prioritas')?>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <h5>Nama Prioritas 1</h5>
+                                  <input type="text" class="form-control" name="program" autocomplete="off" required>
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <h5>Deskripsi</h5>
+                                  <textarea id="desc" name="deskripsi" class="resizable_textarea form-control input" required></textarea>
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <h5>Target</h5>
+                                  <input type="text" class="form-control" name="target" autocomplete="off" required>
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                                                      <div class="form-group">
+                                                                          <h5>Target Satuan</h5>
+                                                                          <select id="heard" class="form-control col-md-7 col-xs-12" name="satuan" required>
+                                                                          <option disabled selected hidden>Choose..</option>
+                                                                          <option disabled ></option>
+                                                                          <option value="Uang (Rp)">Uang (Rp)</option>
+                                                                          <option value="Persentase (%)">Persentase (%)</option>
+                                                                          <option value="Waktu (Hari)">Waktu (Hari)</option>
+                                                                          <option value="Jumlah (kali)">Jumlah (kali)</option>
+                                                                        </select>
+                                                                      </div>
+                                                                  </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                  <h5>Nama Prioritas 2</h5>
+                                  <input type="text" class="form-control" name="program2" autocomplete="off" required>
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <h5>Deskripsi</h5>
+                                  <textarea id="desc" name="deskripsi2" class="resizable_textarea form-control input" required></textarea>
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <h5>Target</h5>
+                                  <input type="text" class="form-control" name="target2" autocomplete="off" required>
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                                                      <div class="form-group">
+                                                                          <h5>Target Satuan</h5>
+                                                                          <select id="heard" class="form-control col-md-7 col-xs-12" name="satuan2" required>
+                                                                          <option disabled selected hidden>Choose..</option>
+                                                                          <option disabled ></option>
+                                                                          <option value="Uang (Rp)">Uang (Rp)</option>
+                                                                          <option value="Persentase (%)">Persentase (%)</option>
+                                                                          <option value="Waktu (Hari)">Waktu (Hari)</option>
+                                                                          <option value="Jumlah (kali)">Jumlah (kali)</option>
+                                                                        </select>
+                                                                      </div>
+                                                                  </div> 
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                  <h5>Nama Prioritas 3</h5>
+                                  <input type="text" class="form-control" name="program3" autocomplete="off" required>
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <h5>Deskripsi</h5>
+                                  <textarea id="desc" name="deskripsi3" class="resizable_textarea form-control input" required></textarea>
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <h5>Target</h5>
+                                  <input type="text" class="form-control" name="target3" autocomplete="off" required>
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                                                      <div class="form-group">
+                                                                          <h5>Target Satuan</h5>
+                                                                          <select id="heard" class="form-control col-md-7 col-xs-12" name="satuan3" required>
+                                                                          <option disabled selected hidden>Choose..</option>
+                                                                          <option disabled ></option>
+                                                                          <option value="Uang (Rp)">Uang (Rp)</option>
+                                                                          <option value="Persentase (%)">Persentase (%)</option>
+                                                                          <option value="Waktu (Hari)">Waktu (Hari)</option>
+                                                                          <option value="Jumlah (kali)">Jumlah (kali)</option>
+                                                                        </select>
+                                                                      </div>
+                                                                  </div>              
+                            </div>
+                            
+                            <div class="col-lg-12 text-right">
+                                <div class="hr-line-dashed"></div>
+                                   <button class="btn btn-primary" type="submit"><i class="fa fa-paper-plane "></i>   Submit</button>
+                                  <?php echo form_close()?>  
+                                </div> 
+                            </div>
+                          </div>
+                </div>
+            </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                  </div>
+                </div>
+              </div>
+
+                      </div>
+
+
+
 
                                   </td>
                                   <?php
@@ -161,7 +398,13 @@
 
 
                               </tr>
-                              <div class="modal fade" id="isi<?php echo $program[$i]->cc_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+
+
+                              
+
+
+                              <!-- <div class="modal fade" id="isi<?php echo $program[0]->cc_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                                       <div class="modal-dialog modal-lg" role="document">
                                                         <div class="modal-content">
                                                           <div class="modal-header">
@@ -169,21 +412,21 @@
                                                             <h4 class="modal-title" id="myModalLabel">Isi Program</h4>
                                                           </div>
                                                           <div class="modal-body">
-                                                                <!-- Isi Modal -->
+                                                                
                                                                 <div class="box-body">
-                                                                <?php echo form_open_multipart('user/isi_data/' .$program[$i]->cc_detail)?>
+                                                                <?php echo form_open_multipart('user/isi_data/' .$program[0]->cc_detail)?>
                                                                 <div class="row">
                                                                   <div class="col-md-12">
                                                                     <div class="form-group">
                                                                       <h5>Nama Program</h5>
-                                                                      <input type="text" class="form-control" autocomplete="off" disabled="true" value="<?php echo $program[$i]->cc_detail?>">
-                                                                      <input type="hidden" class="form-control" name="program" autocomplete="off" value="<?php echo $program[$i]->cc_detail?>">
+                                                                      <input type="text" class="form-control" autocomplete="off" disabled="true" value="<?php echo $program[0]->cc_detail?>">
+                                                                      <input type="hidden" class="form-control" name="program" autocomplete="off" value="<?php echo $program[0]->cc_detail?>">
                                                                     </div>
                                                                   </div>
                                                                   <div class="col-md-12">
                                                                     <div class="form-group">
                                                                       <h5>Deskripsi Program</h5>
-                                                                      <textarea id="desc" name="deskripsi" style="height: 200px" class="resizable_textarea form-control input" disabled="true" value="<?php echo $program[$i]->cc_desc?>"><?php echo $program[$i]->cc_desc?></textarea>
+                                                                      <textarea id="desc" name="deskripsi" style="height: 200px" class="resizable_textarea form-control input" disabled="true" value="<?php echo $program[0]->cc_desc?>"><?php echo $program[0]->cc_desc?></textarea>
                                                                     </div>
                                                                   </div> 
                                                                   </div>
@@ -218,7 +461,7 @@
                                                       </div>
                                                     </div>
                                                     </div>
-                              <div class="modal fade" id="evaluasi<?php echo $program[$i]->cc_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                              <div class="modal fade" id="evaluasi<?php echo $program[0]->cc_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                                       <div class="modal-dialog modal-lg" role="document">
                                                         <div class="modal-content">
                                                           <div class="modal-header">
@@ -226,21 +469,21 @@
                                                             <h4 class="modal-title" id="myModalLabel">Evaluasi Program</h4>
                                                           </div>
                                                           <div class="modal-body">
-                                                                <!-- Isi Modal -->
+                                                                
                                                                 <div class="box-body">
-                                                                <?php echo form_open_multipart('user/evaluasi_data/' .$program[$i]->cc_detail)?>
+                                                                <?php echo form_open_multipart('user/evaluasi_data/' .$program[0]->cc_detail)?>
                                                                 <div class="row">
                                                                   <div class="col-md-12">
                                                                     <div class="form-group">
                                                                       <h5>Nama Program</h5>
-                                                                      <input type="text" class="form-control" autocomplete="off" disabled="true" value="<?php echo $program[$i]->cc_detail?>">
-                                                                      <input type="hidden" class="form-control" name="program" autocomplete="off" value="<?php echo $program[$i]->cc_detail?>">
+                                                                      <input type="text" class="form-control" autocomplete="off" disabled="true" value="<?php echo $program[0]->cc_detail?>">
+                                                                      <input type="hidden" class="form-control" name="program" autocomplete="off" value="<?php echo $program[0]->cc_detail?>">
                                                                     </div>
                                                                   </div>
                                                                   <div class="col-md-12">
                                                                     <div class="form-group">
                                                                       <h5>Deskripsi Program</h5>
-                                                                      <textarea id="desc" name="deskripsi" class="resizable_textarea form-control input" disabled="true" value="<?php echo $program[$i]->cc_desc?>"><?php echo $program[$i]->cc_desc?></textarea>
+                                                                      <textarea id="desc" name="deskripsi" class="resizable_textarea form-control input" disabled="true" value="<?php echo $program[0]->cc_desc?>"><?php echo $program[0]->cc_desc?></textarea>
                                                                     </div>
                                                                   </div> 
                                                                   </div>
@@ -274,10 +517,12 @@
                                                         </div>
                                                       </div>
                                                     </div>
-                                                    </div>
-                              <?php } ?>
+                                                    </div> -->
+                              
                           </tbody>
                         </table>
+
+                     
                     </div>
                   </div>
 

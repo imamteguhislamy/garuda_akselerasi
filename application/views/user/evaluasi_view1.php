@@ -48,7 +48,7 @@
           <div class="row">
             <div class="col-md-1 col-sm-1 col-xs-12"></div>
             <div class="col-md-10 col-sm-10 col-xs-12">
-              <h3 >Garuda Acceleration Program </h3>
+              <h3 >Track - Corporate Culture </h3>
               <h4 >Selamat Datang</h4>
               <br/>
               <!-- form grid slider -->
@@ -73,15 +73,14 @@
                   </div>
                   <div class="col-md-9 col-sm-9 col-xs-12">
                       <div class="profile_title">
-                      <div class="col-md-12">
-                        <h2>Daftar Sasaran Utama dan Prioritas</h2>
+                      <div class="col-md-6">
+                        <h2>Program Report</h2>
                       </div>
 
                     </div>
                     <br>
                     <div class="x_panel ui-ribbon-container ">
-                      <p style="font-size:14px">Nama Prioritas : <br><?php echo $programunit->cc_detail?></p>
-                      <p style="font-size:14px">Deskripsi Prioritas : <br><?php echo $programunit->cc_desc?></p>
+                      <p style="font-size:14px"><?php echo $programunit->cc_desc?></p>
                     </div>
                     <div class="x_panel ui-ribbon-container ">
                       <div class="x_title">
@@ -171,7 +170,7 @@
                       }  else { ?>
                         <div class="x_panel ui-ribbon-container ">
                           <div class="x_content">
-                            <form id="demo-form2" action="<?php echo base_url()?>user/evaluasi_data/<?php echo $programunit->cc_id?>" method="post" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
+                            <form id="demo-form2" action="<?php echo base_url()?>user/evaluasi_data1/<?php echo $programunit->cc_id?>" method="post" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
                               <input type="text" id="first-name" name="user" readonly class="form-control col-md-7 col-xs-12" value="<?php echo $this->session->userdata('username');?>" style="display:none">
                               <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nama Program 
@@ -313,7 +312,7 @@
                         ?>
                         <div class="x_panel ui-ribbon-container ">
                           <div class="x_content">
-                            <form id="demo-form2" action="<?php echo base_url()?>user/evaluasi_data/<?php echo $programunit->cc_id?>" method="post" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
+                            <form id="demo-form2" action="<?php echo base_url()?>user/evaluasi_data1/<?php echo $programunit->cc_id?>" method="post" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
                               <input type="text" id="first-name" name="user" readonly class="form-control col-md-7 col-xs-12" value="<?php echo $this->session->userdata('username');?>" style="display:none">
                               <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nama Program 
