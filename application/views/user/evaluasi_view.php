@@ -55,8 +55,8 @@
                                     <div class="col-md-12 col-sm-12 col-xs-12"> 
                                         <div align="center">
                                             <h2>Update Prioritas Unit <?php echo $this->session->userdata('username'); ?> </h2>
-                                        <br>
-                                    </div>
+                                            <br>
+                                        </div>
                                     </div>
                                     <br>
                                     <div class="x_panel ui-ribbon-container ">
@@ -176,6 +176,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                                        <button type="button" name="submit" class="btn btn-primary" value="batal">Kembali</button>
                                                         <button type="submit" name="submit" class="btn btn-success" value="simpan">Submit</button>
                                                     </div>
                                                 </div>
@@ -228,6 +229,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                                        <a href="<?php echo base_url()?>user"><button type="button" name="submit" class="btn btn-primary" value="batal">Kembali</button></a>
                                                         <button type="submit" name="submit" class="btn btn-success" value="simpan">Submit</button>
                                                     </div>
                                                 </div>
