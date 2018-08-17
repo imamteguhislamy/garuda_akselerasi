@@ -98,12 +98,9 @@
                               <tr>
                                 <th style="width:30%">Bulan</th>
                                 <th style="width:10%">Target</th>
-                                <th>Capaian Dalam <?php echo $daftarevaluasi[0]->input_satuan;?></th>
-                                <th style="width:15%">Capaian (%)</th>
-                                <th style="width:10%">Gap (%)</th>
-                                <th style="width:10%">Metode Tracking</th>
-                                <th style="width:10%">Reinforcement Positif</th>
-                                <th style="width:10%">Reinforcement Negatif</th>
+                                <th>Realisasi</th>
+                                <th style="width:15%">Tingkat Pencapaian</th>
+                                <th style="width:10%">Gap (dalam persen)</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -111,13 +108,10 @@
                               ?>
                                 <tr style="font-size:12px">
                                   <td><?php echo $daftarevaluasi[$i]->last_modified_c;?></td>
-                                  <td><?php echo $daftarevaluasi[$i]->input_target ?></td>
+                                  <td><?php echo $daftarevaluasi[$i]->target ?></td>
                                   <td><?php echo $daftarevaluasi[$i]->input_realisasi ?></td>
                                   <td><?php echo $daftarevaluasi[$i]->input_realisasi_ ?></td>
                                   <td><?php echo $daftarevaluasi[$i]->input_gap ?></td>
-                                  <td><?php echo $daftarevaluasi[$i]->input_metodologi ?></td>
-                                  <td><?php echo $daftarevaluasi[$i]->input_reinforcement_positif ?></td>
-                                  <td><?php echo $daftarevaluasi[$i]->input_reinforcement_negatif ?></td>
                                 </tr>
                               <?php } ?>
                             </tbody>

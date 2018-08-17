@@ -98,7 +98,7 @@ include('connection/conn.php');
                         <thead>
                           <tr>
                             <th style="width:5%; text-align:center">#</th>
-                            <th style="width:35%; text-align:center">Program</th>
+                            <th style="width:35%; text-align:center">Prioritas</th>
                             <th style="width:15%; text-align:center">Target</th>
                             <th style="width:15%; text-align:center">Satuan</th>
                             <th style="width:15%; text-align:center">Gap (%)</th>
@@ -106,24 +106,24 @@ include('connection/conn.php');
                           </tr>
                         </thead>
                         <tbody> 
-                               <?php $ppp=0; for ($i=0; $i <count($program) ; $i++) { 
+                               <?php $ppp=0; for ($i=0; $i <count($prioritas_unit) ; $i++) { 
                                 $unit=$this->session->userdata('username');
-                                $xmen=$program[$i]->cc_detail;
-                               $sudah=mysqli_query($con, "SELECT * FROM cc_program_input where input_user='$unit' and input_detail='$xmen'");
+                                $xmen=$prioritas_unit[$i]->cc_detail;
+                               $sudah=mysqli_query($con, "SELECT * FROM cc_program where unit='$unit' and cc_detail='$xmen'");
                               $gap=mysqli_query($con, "SELECT * FROM cc_program_eval where input_user_c='$unit' and input_detail_c='$xmen'");
                               $isimen=mysqli_fetch_array($sudah);
                               $gapmen=mysqli_fetch_array($gap);?>
                                <tr>
                               <td scope="row" style="text-align:center; vertical-align:middle"><?php echo $i+1; ?></td>
-                              <td><?php echo $program[$i]->cc_detail?> </td>
+                              <td><?php echo $prioritas_unit[$i]->input_detail_c?> </td>
                               <td style="text-align:center">
-                                  <?php if (!$program[$i]->input_target) echo "-"; else echo $program[$i]->input_target; $ppp=$ppp+$program[$i]->input_target;?>
+                                  <?php if (!$prioritas_unit[$i]->target) echo "-"; else echo $prioritas_unit[$i]->target; $ppp=$ppp+$prioritas_unit[$i]->target;?>
                                 </td> 
                                 <td style="text-align:center">
-                                  <?php if (!$program[$i]->input_satuan) echo "-"; else echo $program[$i]->input_satuan; ?>
+                                  <?php if (!$prioritas_unit[$i]->satuan) echo "-"; else echo $prioritas_unit[$i]->satuan; ?>
                                 </td>
                                 <td style="text-align:center">
-                                  <?php echo round($program[$i]->persen_gap);?>
+                                  <?php echo round($prioritas_unit[$i]->input_gap);?>
                                 </td>
                                 </tr>
                             <?php } ?>
@@ -147,9 +147,9 @@ include('connection/conn.php');
                     <br>
                     <?php 
                     $p=count($programdefault);
-                    $cc=mysqli_query($con, "SELECT * FROM cc_program where status= 'Default'");
+                    $cc=mysqli_query($con, "SELECT * FROM cc_program where status= 'Default' and unit='$unit'");
                     $cc2=mysqli_query($con, "SELECT MAX(cc_time) as max FROM cc_program where status= 'Default'");
-                    $cc3=mysqli_query($con, "SELECT * FROM cc_program where status= 'Default'");
+                    $cc3=mysqli_query($con, "SELECT * FROM cc_program where status= 'Default' and unit='$unit'");
                     if ($p>0)
                     {
                       $max=$max[0]->max;
@@ -167,45 +167,18 @@ include('connection/conn.php');
                           <tr>
                             <?php
                             $x=1;
-                            while ($x <= $max) {
+                            while ($x <= $max-9) {
                               if ($bulan>12) {
                                 $bulan=$bulan-12;
                               }
                               if ($bulan==1) {
-                                $bulan1='Jan';
-                              }
-                              if ($bulan==2) {
-                                $bulan1='Feb';
-                              }
-                              if ($bulan==3) {
-                                $bulan1='Mar';
-                              }
-                              if ($bulan==4) {
-                                $bulan1='Apr';
-                              }
-                              if ($bulan==5) {
-                                $bulan1='Mei';
-                              }
-                              if ($bulan==6) {
-                                $bulan1='Jun';
-                              }
-                              if ($bulan==7) {
-                                $bulan1='Jul';
-                              }
-                              if ($bulan==8) {
                                 $bulan1='Agu';
                               }
-                              if ($bulan==9) {
+                              if ($bulan==2) {
                                 $bulan1='Sep';
                               }
-                              if ($bulan==10) {
+                              if ($bulan==3) {
                                 $bulan1='Okt';
-                              }
-                              if ($bulan==11) {
-                                $bulan1='Nov';
-                              }
-                              if ($bulan==12) {
-                                $bulan1='Des';
                               }
                               ?>
                               <th style=" text-align:center"><?php echo $bulan1;?></th>
@@ -229,16 +202,16 @@ include('connection/conn.php');
                               $sudah=mysqli_query($con, "SELECT * FROM cc_program_eval JOIN cc_program_input on cc_program_eval.input_user_c=cc_program_input.input_user  and cc_program_input.input_detail=cc_program_eval.input_detail_c where input_user='$unit' and input_detail='$xmen' ORDER BY input_id DESC");
                         
 
-                              $cc4=mysqli_query($con, "SELECT * FROM cc_program where status= 'Default'");
+                              $cc4=mysqli_query($con, "SELECT * FROM cc_program where status= 'Default' and unit='$unit'");
                               $bulan2=mysqli_fetch_array($cc4 )['start_month'];
-                              $bulan2= 12;
+                              $bulan2= 19;
 
                               ?>
                               <th scope="row" style="text-align:center; vertical-align:middle"><?php echo $no++; ?></th>
                               <td><?php echo $cc_program['cc_detail'];?></td>
                               <?php
                               $o2=1;
-                              while ($o2 <= $max) {
+                              while ($o2 <= $max-9) {
                                 ?>
                                 <td style="text-align:center">
                                   <?php 
@@ -251,9 +224,9 @@ include('connection/conn.php');
                                   }
 
                                   $pro=$cc_program['cc_detail'];
-                                  $cc5=mysqli_query($con, "SELECT * FROM cc_program_eval where input_user_c='$unit'  and input_bulan='$bulan2' and input_detail_c='$pro'");
+                                  $cc5=mysqli_query($con, "SELECT * FROM cc_program_eval where input_user_c='$unit' and input_bulan='$bulan2' and input_detail_c='$pro'");
 
-                                  $isi5=mysqli_fetch_array($cc5 )['input_realisasi_'];
+                                  $isi5=mysqli_fetch_array($cc5)['input_realisasi_'];
                                   if ($isi5==null && empty($isi5)) {
                                     echo "-";
                                   } else {
@@ -278,7 +251,7 @@ include('connection/conn.php');
                     }
                     ?>
 
-                    <?php 
+                    <!-- <?php 
 
                     $cc=mysqli_query($con, "SELECT * FROM cc_program where status= 'Default'");
                     $cc2=mysqli_query($con, "SELECT MAX(cc_time) as max FROM cc_program where status= 'Default'");
@@ -360,7 +333,7 @@ include('connection/conn.php');
 
                               <?php
                               $user=$this->session->userdata('username');
-                              $sudah=mysqli_query($con, "SELECT * FROM cc_program_eval JOIN cc_program_input on cc_program_eval.input_user_c=cc_program_input.input_user  and cc_program_input.input_detail=cc_program_eval.input_detail_c where input_user='$user' and input_detail='$xmen'");
+                              $sudah=mysqli_query($con, "SELECT * FROM cc_program_eval JOIN cc_program on cc_program_eval.input_user_c=cc_program.unit  and cc_program.cc_detail=cc_program_eval.cc_detail_c where unit='$user' and cc_detail='$xmen'");
                               
                               $isimen=mysqli_fetch_array($sudah);
                               $gapmen=mysqli_fetch_array($gap);
@@ -387,7 +360,7 @@ include('connection/conn.php');
                                   }
 
                                   $pro=$cc_program['cc_detail'];
-                                  $cc5=mysqli_query($con, "SELECT * FROM cc_program_eval where input_user_c='$user'  and input_bulan='$bulan2' and input_detail_c='$pro'");
+                                  $cc5=mysqli_query($con, "SELECT * FROM cc_program_eval where input_user_c='$user'  and input_bulan='$bulan2' and cc_detail_c='$pro'");
 
                                   $isi5=mysqli_fetch_array($cc5 )['input_attach'];
                                   if ($isi5==null && empty($isi5)) {
@@ -413,7 +386,7 @@ include('connection/conn.php');
                       echo "Saat ini tidak ada program berjalan";
                     }
                     ?>
-                    <p>* Klik pada "file" untuk mengunduh Evidence</p>
+                    <p>* Klik pada "file" untuk mengunduh Evidence</p> -->
                     <!-- after 1 -->
 
                     <br>
