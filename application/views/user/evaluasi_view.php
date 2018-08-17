@@ -177,21 +177,21 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nama Program 
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" id="first-name" name="program" readonly class="form-control col-md-7 col-xs-12" value="<?php echo $programunit->input_detail?>">
+                                  <input type="text" id="first-name" name="program" readonly class="form-control col-md-7 col-xs-12" value="<?php echo $programunit->cc_detail?>">
                                 </div>
                               </div>
                               <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Target Satuan
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" id="first-name" name="satuan" readonly class="form-control col-md-7 col-xs-12" value="<?php echo $programunit->input_satuan?>">
+                                  <input type="text" id="first-name" name="satuan" readonly class="form-control col-md-7 col-xs-12" value="<?php echo $programunit->satuan?>">
                                 </div>
                               </div>
                               <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Target
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="target" id="first-name" required class="form-control col-md-7 col-xs-12" value="<?php echo $programunit->input_target?>" readonly>
+                                  <input type="text" name="target" id="first-name" required class="form-control col-md-7 col-xs-12" value="<?php echo $programunit->target?>" readonly>
                                 </div>
                               </div>
                               <div class="ln_solid"></div>
@@ -201,85 +201,6 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                   <input type="number" lang="nb" name="capaian" id="first-name" required class="form-control col-md-7 col-xs-12" value="" >
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Metode Tracking
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <select class="form-control" required="true" name="metodologi">
-                                      <option value="">Choose..</option>
-                                      <option value="Monitoring pencapaian atau realisasi KPI">Monitoring pencapaian atau realisasi KPI</option>
-                                      <option value="Monitoring skedul pelaksanaan program dibandingkan target dan realisasi">Monitoring skedul pelaksanaan program dibandingkan target dan realisasi </option>
-                                      <option value="Laporan Pelaksanan Kegiatan">Laporan Pelaksanan Kegiatan </option>
-                                      <option value="Minutes of Meeting">Minutes of Meeting </option>
-                                      <option value="Monitoring Pengendalian Biaya">Monitoring Pengendalian Biaya</option>
-                                      <option value="Monitoring Laporan Pemenuhan SLA">Monitoring Laporan Pemenuhan SLA</option>
-                                      <option value="Monitoring Penurunan Error Rate">Monitoring Penurunan Error Rate</option>
-                                      <option value="Simple Behavior Survey">Simple Behavior Survey</option>
-                                      <option value="Simple Customer Survey (Internal/External)">Simple Customer Survey (Internal/External)</option>
-                                      <option value="Other">Other..</option>
-                                  </select>
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Reinforcement Positif
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <select class="form-control" required="true" name="r_positif">
-                                      <option value="">Choose..</option>
-                                      <option value="Plakat">Plakat</option>
-                                      <option value="Pin">Pin</option>
-                                      <option value="Sertifikat">Sertifikat</option>
-                                      <option value="Banner">Banner</option>
-                                      <option value="Ribbon">Ribbon</option>
-                                      <option value="Throphie">Throphie</option>
-                                      <option value="Flag">Flag</option>
-                                      <option value="Voucher">Voucher</option>
-                                      <option value="Best Employee Award">Best Employee Award</option>
-                                      <option value="Happy Icon">Happy Icon</option>
-                                      <option value="Recognition Letter">Recognition Letter</option>
-                                      <option value="Thank You Note in Post It">Thank You Note in Post It</option>
-                                      <option value="Appreciation Card for good performance">Appreciation Card for good performance</option> 
-                                      <option value="Appreciation for employee “Personal Days” (birthdays, pension, anniversaries, etc.)">Appreciation for employee “Personal Days” (birthdays, pension, anniversaries, etc.)</option>
-                                      <option value="Recognition Speeches">Recognition Speeches</option>
-                                      <option value="Recognition Words (Bravo,Wow,Thank You)">Recognition Words (Bravo,Wow,Thank You)</option>
-                                      <option value="Other">Other..</option>
-                                  </select>
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Reinforcement Negatif
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <select class="form-control" required="true" name="r_negatif">
-                                      <option value="">Choose..</option>
-                                      <option value="Sad Icon">Sad Icon</option>
-                                      <option value="Black Flag">Black Flag</option>
-                                      <option value="Pegawai Telatan of the month">Pegawai Telatan of the month</option>
-                                      <option value="Punishment Card">Punishment Card</option>
-                                      <option value="Punishment Letter">Punishment Letter</option>
-                                      <option value="Punishment Speeches">Punishment Speeches</option>
-                                      <option value="Coaching">Coaching</option>
-                                      <option value="Berdiri di depan lift">Berdiri di depan lift</option>
-                                      <option value="Other">Other..</option>
-                                  </select>
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Bukti
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="file" id="file" name="file" required  value="" >
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <p><i>*Bukti harus dengan format .zip atau .rar dan ukuran max 4MB</i></p>
-                                  <p><i>*Bukti berisi 3 folder dengan konten 1. Bukti Capaian Program, 2. Bukti  Metode Tracking, 3. Bukti Reinforcement</i></p>
-                                  <p><i>*Jika file lebih dari 4MB, harap upload video di drive, copy link kedalam file txt dan upload dalam format .zip atau .rar</i></p>
                                 </div>
                               </div>
                               <div class="ln_solid"></div>
@@ -319,21 +240,21 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nama Program 
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" id="first-name" name="program" readonly class="form-control col-md-7 col-xs-12" value="<?php echo $programunit->input_detail?>">
+                                  <input type="text" id="first-name" name="program" readonly class="form-control col-md-7 col-xs-12" value="<?php echo $programunit->cc_detail?>">
                                 </div>
                               </div>
                               <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Target Satuan
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" id="first-name" name="satuan" readonly class="form-control col-md-7 col-xs-12" value="<?php echo $programunit->input_satuan?>">
+                                  <input type="text" id="first-name" name="satuan" readonly class="form-control col-md-7 col-xs-12" value="<?php echo $programunit->satuan?>">
                                 </div>
                               </div>
                               <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Target
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="text" name="target" id="first-name" required class="form-control col-md-7 col-xs-12" value="<?php echo $programunit->input_target?>" readonly>
+                                  <input type="text" name="target" id="first-name" required class="form-control col-md-7 col-xs-12" value="<?php echo $programunit->target?>" readonly>
                                 </div>
                               </div>
                               <div class="ln_solid"></div>
@@ -343,85 +264,6 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                   <input type="number" lang="nb" name="capaian" id="first-name" required class="form-control col-md-7 col-xs-12" value="" >
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Metode Tracking
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <select class="form-control" required="true" name="metodologi">
-                                      <option value="">Choose..</option>
-                                      <option value="Monitoring pencapaian atau realisasi KPI">Monitoring pencapaian atau realisasi KPI</option>
-                                      <option value="Monitoring skedul pelaksanaan program dibandingkan target dan realisasi">Monitoring skedul pelaksanaan program dibandingkan target dan realisasi </option>
-                                      <option value="Laporan Pelaksanan Kegiatan">Laporan Pelaksanan Kegiatan </option>
-                                      <option value="Minutes of Meeting">Minutes of Meeting </option>
-                                      <option value="Monitoring Pengendalian Biaya">Monitoring Pengendalian Biaya</option>
-                                      <option value="Monitoring Laporan Pemenuhan SLA">Monitoring Laporan Pemenuhan SLA</option>
-                                      <option value="Monitoring Penurunan Error Rate">Monitoring Penurunan Error Rate</option>
-                                      <option value="Simple Behavior Survey">Simple Behavior Survey</option>
-                                      <option value="Simple Customer Survey (Internal/External)">Simple Customer Survey (Internal/External)</option>
-                                      <option value="Other">Other..</option>
-                                  </select>
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Reinforcement Positif
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <select class="form-control" required="true" name="r_positif">
-                                      <option value="">Choose..</option>
-                                      <option value="Plakat">Plakat</option>
-                                      <option value="Pin">Pin</option>
-                                      <option value="Sertifikat">Sertifikat</option>
-                                      <option value="Banner">Banner</option>
-                                      <option value="Ribbon">Ribbon</option>
-                                      <option value="Throphie">Throphie</option>
-                                      <option value="Flag">Flag</option>
-                                      <option value="Voucher">Voucher</option>
-                                      <option value="Best Employee Award">Best Employee Award</option>
-                                      <option value="Happy Icon">Happy Icon</option>
-                                      <option value="Recognition Letter">Recognition Letter</option>
-                                      <option value="Thank You Note in Post It">Thank You Note in Post It</option>
-                                      <option value="Appreciation Card for good performance">Appreciation Card for good performance</option> 
-                                      <option value="Appreciation for employee “Personal Days” (birthdays, pension, anniversaries, etc.)">Appreciation for employee “Personal Days” (birthdays, pension, anniversaries, etc.)</option>
-                                      <option value="Recognition Speeches">Recognition Speeches</option>
-                                      <option value="Recognition Words (Bravo,Wow,Thank You)">Recognition Words (Bravo,Wow,Thank You)</option>
-                                      <option value="Other">Other..</option>
-                                  </select>
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Reinforcement Negatif
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <select class="form-control" required="true" name="r_negatif">
-                                      <option value="">Choose..</option>
-                                      <option value="Sad Icon">Sad Icon</option>
-                                      <option value="Black Flag">Black Flag</option>
-                                      <option value="Pegawai Telatan of the month">Pegawai Telatan of the month</option>
-                                      <option value="Punishment Card">Punishment Card</option>
-                                      <option value="Punishment Letter">Punishment Letter</option>
-                                      <option value="Punishment Speeches">Punishment Speeches</option>
-                                      <option value="Coaching">Coaching</option>
-                                      <option value="Berdiri di depan lift">Berdiri di depan lift</option>
-                                      <option value="Other">Other..</option>
-                                  </select>
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Bukti
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="file" id="file" name="file" required  value="" >
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <p><i>*Bukti harus dengan format .zip atau .rar dan ukuran max 4MB</i></p>
-                                  <p><i>*Bukti berisi 3 folder dengan konten 1. Bukti Capaian Program, 2. Bukti Metode Tracking, 3. Bukti Reinforcement</i></p>
-                                  <p><i>*Jika file lebih dari 4MB, harap upload video di drive, copy link kedalam file txt dan upload dalam format .zip atau .rar</i></p>
                                 </div>
                               </div>
                               <div class="ln_solid"></div>

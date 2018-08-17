@@ -79,7 +79,7 @@ class User extends CI_Controller {
 		$username = $this->session->userdata('username');
 		$this->form_validation->set_rules('capaian');
 		$data['programunit'] = $this->model_users->findprogram($this->session->userdata('username'),$id);
-		$data['program'] = $this->model_users->program($this->session->userdata('username'));
+		
 		$data['daftarevaluasi'] = $this->model_users->daftarevaluasi($this->session->userdata('username'),$data['programunit']->cc_detail);
 		$data['listevaluasi'] = $this->model_users->listevaluasi($this->session->userdata('username'),$data['programunit']->cc_detail);
 		//print_r($data['listevaluasi']);exit();
@@ -98,9 +98,6 @@ class User extends CI_Controller {
 			$satuan=$_POST['satuan'];
 			$target=$_POST['target'];
 			$capaian=$_POST['capaian'];
-			$metodologi=$_POST['metodologi'];
-			$r_positif=$_POST['r_positif'];
-			$r_negatif=$_POST['r_negatif'];
 			$capaian_=round($capaian/$target*100);
 			if ($capaian_ > 100){
 				$capaian_ = 100;
@@ -112,39 +109,6 @@ class User extends CI_Controller {
 				$gap=100-$capaian_;
 			}
 
-			if (isset($_FILES['file']['name'])&&!empty($_FILES['file']['name'])) {
-			$file = rand(1000,100000)."-".$_FILES['file']['name'];
-			$file_loc = $_FILES['file']['tmp_name'];
-			$file_size = $_FILES['file']['size'];
-				// Check file size
-			if ($file_size > 4194304) {
-				echo "Sorry, your file is too large.";
-				$_SESSION['error2']=1;
-				$uploadOk = 0;
-			}
-			$folder="uploads/";
-				// new file size in KB
-			$new_size = $file_size/1024;  
-				// new file size in KB
-
-				// make file name in lower case
-			$new_file_name = strtolower($file);
-				// make file name in lower case
-
-			$final_file=str_replace(' ','-',$new_file_name);
-				// Allow certain file formats
-
-			$target_file = $folder . basename($_FILES["file"]["name"]);
-			$file_type = pathinfo($target_file,PATHINFO_EXTENSION);;
-				// Allow certain file formats
-			if($file_type != "rar" && $file_type != "zip" ) {
-
-				echo "Sorry, only rar and zip files are allowed.";
-				$_SESSION['error']=1;
-				$_SESSION['tipe']=$file_type;
-
-				$uploadOk = 0;
-			}
 			if ($uploadOk == 0) {
 
 				// if everything is ok, try to upload file
@@ -155,10 +119,6 @@ class User extends CI_Controller {
 								'input_detail_c'		=> $this->input->post('program'),
 								'input_realisasi'		=> $capaian,
 								'input_realisasi_'		=> $capaian_,
-								'input_metodologi'		=> $metodologi,
-								'input_reinforcement_positif'		=> $r_positif,
-								'input_reinforcement_negatif'		=> $r_negatif,
-								'input_attach'			=> $final_file,
 								'input_gap'				=> $gap,
 								'input_bulan'			=> $month,
 								'last_modified_c'		=> $data
@@ -170,7 +130,7 @@ class User extends CI_Controller {
 		}
 			
 			}
-	}
+	
 
 	public function tambah_prioritas(){
 		//sebelum mengeksekusi query

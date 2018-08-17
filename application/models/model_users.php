@@ -86,7 +86,7 @@ class model_users extends CI_Model {
 	
 	public function findprogram($unit,$id) {
 		//Query mencari record berdasarkan ID
-		$hasil = $this->db->query("select * from cc_program a LEFT JOIN (select * from cc_program_input where input_user='$unit')b on a.cc_detail=b.input_detail where status='Default' AND cc_id='$id'");
+		$hasil = $this->db->query("select * from cc_program where status='Default' AND cc_id='$id' AND unit='$unit'");
 		if($hasil->num_rows() > 0){
 			return $hasil->row();
 		}
