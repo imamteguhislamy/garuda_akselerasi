@@ -129,7 +129,7 @@ include('connection/conn.php');
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($programsum as $key)  { ?>
+                                        <?php foreach ($programjaw as $key)  { ?>
                                         <tr>
                                             <td style="text-align:left" >
                                                 <a href="<?php echo base_url()?>admin/progress_program/<?php echo $key->input_user_c;?>">

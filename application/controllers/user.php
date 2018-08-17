@@ -255,6 +255,7 @@ class User extends CI_Controller {
 		$data['progresunit'] = $this->model_users->progresunit($user);
         $data['prioritas_unit'] = $this->model_users->prioritas_unit($this->session->userdata('username'));
         $data['avg_unit'] = $this->model_users->avg_unit($this->session->userdata('username'));
+        $data['pencapaian_unit'] = $this->model_users->pencapaian_unit($this->session->userdata('username'));
 //        $data['daftarevaluasi'] = $this->model_users->daftarevaluasi($this->session->userdata('username'),$data['programunit']->cc_detail);
 	/*	if(!$data['nilairealisasi']) { $data['rerata'] =0; } else {
 		//$data['rerata'] = $data['nilairealisasi'][0]->Total/$data['jumlahprogram']; }

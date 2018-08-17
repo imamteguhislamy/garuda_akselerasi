@@ -60,7 +60,7 @@ include('connection/conn.php');
               <div class="x_panel" style="border-top: 6px solid #4F8BB1;">
 
                 <div class="x_content" >
-                  <div class="col-md-5 col-sm-3 col-xs-12 profile_left">
+                  <div class="col-md-6 col-sm-3 col-xs-12 profile_left">
                     <div class="x_title" style="text-align:center">
                       <h4 >Index Pencapaian Unit</h4>
                       <div class="clearfix"></div>
@@ -84,7 +84,29 @@ include('connection/conn.php');
                     </div>
                     <br>
                   </div>
-                  <div class="col-md-7 col-sm-9 col-xs-12">
+
+
+
+
+                  <div class="col-md- col-sm-6 col-xs-12 widget-text-box">
+            <div class="x_panel" >
+              <div class="x_title" style="text-align:center">
+                <h3 >Pencapaian Prioritas</h3>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <div id="priority1bar" style="height:370px;"></div>
+                <div style="text-align:center">
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+                  <div class="col-md-12 col-sm-9 col-xs-12">
 
                     <div class="profile_title">
                       <div class="col-md-6">
@@ -495,18 +517,31 @@ include('connection/conn.php');
         </div>
         </div>
 
-    <!-- Mainly scripts -->
-    <script src="<?php echo base_url();?>js/jquery-2.1.1.js"></script>
-    <script src="<?php echo base_url();?>js/bootstrap.min.js"></script>
-    <script src="<?php echo base_url();?>js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="<?php echo base_url();?>js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-    <script src="<?php echo base_url();?>js/plugins/jeditable/jquery.jeditable.js"></script>
+   <script src="<?php echo base_url(); ?>js/jquery-2.1.1.js"></script>
+    <script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url(); ?>js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="<?php echo base_url(); ?>js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="<?php echo base_url(); ?>js/plugins/jeditable/jquery.jeditable.js"></script>
 
-    <script src="<?php echo base_url();?>js/plugins/dataTables/datatables.min.js"></script>
+    <script src="<?php echo base_url(); ?>js/plugins/dataTables/datatables.min.js"></script>
+    <script src="<?php echo base_url()?>js/plugins/jsKnob/jquery.knob.js"></script>
 
     <!-- Custom and plugin javascript -->
-    <script src="<?php echo base_url();?>js/inspinia.js"></script>
-    <script src="<?php echo base_url();?>js/plugins/pace/pace.min.js"></script>
+    <script src="<?php echo base_url(); ?>js/inspinia.js"></script>
+    <script src="<?php echo base_url(); ?>js/plugins/pace/pace.min.js"></script>
+
+    <!-- iCheck -->
+    <script src="<?php echo base_url(); ?>js/plugins/iCheck/icheck.min.js"></script>
+
+    <!-- Flot -->
+    <script src="<?php echo base_url(); ?>js/plugins/flot/jquery.flot.js"></script>
+    <script src="<?php echo base_url(); ?>js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="<?php echo base_url(); ?>js/plugins/flot/jquery.flot.resize.js"></script>
+    <script src="<?php echo base_url(); ?>js/plugins/flot/jquery.flot.pie.js"></script>
+         
+    <!-- ECharts -->
+    <script src="<?php echo base_url(); ?>vendors/echarts/dist/echarts.min.js"></script>
+    <script src="<?php echo base_url(); ?>vendors/echarts/map/js/world.js"></script>
     <style>
       .x_panel {
   position: relative;
@@ -547,5 +582,117 @@ include('connection/conn.php');
     });
   });
   </script>
+
+
+  <script type="text/javascript">
+    var theme = {
+      color: [
+      '#26B99A', '#34495E', '#BDC3C7', '#3498DB',
+      '#9B59B6', '#8abb6f', '#759c6a', '#bfd3b7'
+      ],
+
+      textStyle: {
+        fontFamily: 'Arial, Verdana, sans-serif'
+      }
+    };
+
+    var echartGauge = echarts.init(document.getElementById('priority1bar'), theme);
+
+    echartGauge.setOption({
+    tooltip : {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['SKI']
+    },
+    toolbox: {
+        show : true,
+    },
+    calculable : true,
+    xAxis : [
+        {
+            type : 'category',
+            data : ['a', 'b', 'c'], 
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value',
+            min : 0,
+            max : 100
+        }
+    ],
+    series : [
+        {
+            name:'nama',
+            type:'bar',
+
+            // <?php 
+            // // if (count($pencapaian_unit) = null) {
+            // //   $val1 = 0;
+            // //   $val2 = 0;
+            // //   $val3 = 0;
+            // if (count($pencapaian_unit) = 1) {
+            //   $val1 = $pencapaian_unit[0];
+            //   $val2 = 0;
+            //   $val3 = 0;
+            // } else if (count($pencapaian_unit) = 2) {
+            //   $val1 = $pencapaian_unit[0];
+            //   $val2 = $pencapaian_unit[1];
+            //   $val3 = 0;
+            // } else if (count($pencapaian_unit) = 3) {
+            //   $val1 = $pencapaian_unit[0];
+            //   $val2 = $pencapaian_unit[1];
+            //   $val3 = $pencapaian_unit[2];
+            // } else {
+            //   $val1 = 0;
+            //   $val2 = 0;
+            //   $val3 = 0;
+            // }
+
+            // ?>
+
+            // <?php 
+            //   if($pencapaian_unit[0]->input_realisasi_ == NULL){
+            //     $val1 = 0;
+            //     $val2 = 0;
+            //     $val3 = 0;
+            //   }
+
+            //   if($pencapaian_unit[0]->input_realisasi_ != NULL && $pencapaian_unit[1]->input_realisasi_ == NULL){
+            //     $val1 = $pencapaian_unit[0];
+            //     $val2 = 0;
+            //     $val3 = 0;
+            //   }
+
+            //   if($pencapaian_unit[0]->input_realisasi_ != NULL && $pencapaian_unit[1]->input_realisasi_ != NULL && $pencapaian_unit[2]->input_realisasi_ == NULL){
+            //     $val1 = $pencapaian_unit[0]->input_realisasi_;
+            //     $val2 = $pencapaian_unit[1]->input_realisasi_;
+            //     $val3 = 0;
+            //   }
+
+            //   if($pencapaian_unit[0]->input_realisasi_ != NULL && $pencapaian_unit[1]->input_realisasi_ != NULL && $pencapaian_unit[2]->input_realisasi_ != NULL){
+            //     $val1 = $pencapaian_unit[0]->input_realisasi_;
+            //     $val2 = $pencapaian_unit[1]->input_realisasi_;
+            //     $val3 = $pencapaian_unit[2]->input_realisasi_;
+            //   }
+            // ?>
+
+
+
+            data:[<?php echo 75;?>, <?php echo 64;?>, <?php echo 90;?>],
+            markPoint : {
+                data : [
+                    {type : 'max', name: 'max'},
+                    {type : 'min', name: 'min'},
+                    {xAxis : '2', yAxis: 4.9, name: 'min', value: 4.9}
+                ]
+            },
+        },
+    ]
+  });
+  </script>
+
+
 </body>
 </html>
