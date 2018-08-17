@@ -247,12 +247,15 @@ class User extends CI_Controller {
 		$month = date('m');
 		//print_r($month);
 		$user = $this->session->userdata('username');
-		$data['jumlahprogram']	= $this->model_users->jumlah_program_jalan();
+		$data['jumlahprogram']	= $this->model_users->jumlah_program_jalan($user);
 		$data['nilairealisasi']	= $this->model_users->realisasi_program_jalan($user,$month);
 		$data['program'] = $this->model_users->program_unit($this->session->userdata('username'));
-		$data['programdefault'] = $this->model_users->program_jalan();
+		$data['programdefault'] = $this->model_users->program_jalan($user);
 		$data['max'] = $this->model_users->max_bulan();
 		$data['progresunit'] = $this->model_users->progresunit($user);
+        $data['prioritas_unit'] = $this->model_users->prioritas_unit($this->session->userdata('username'));
+        $data['avg_unit'] = $this->model_users->avg_unit($this->session->userdata('username'));
+//        $data['daftarevaluasi'] = $this->model_users->daftarevaluasi($this->session->userdata('username'),$data['programunit']->cc_detail);
 	/*	if(!$data['nilairealisasi']) { $data['rerata'] =0; } else {
 		//$data['rerata'] = $data['nilairealisasi'][0]->Total/$data['jumlahprogram']; }
 		//print_r($data['program']);exit();*/

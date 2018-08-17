@@ -96,7 +96,7 @@ class model_users extends CI_Model {
 	}
 	public function daftarevaluasi($unit,$namaprogram) {
 		//Query mencari record berdasarkan ID
-		$hasil = $this->db->query("SELECT * FROM cc_program_eval JOIN cc_program_input on cc_program_eval.input_user_c=cc_program_input.input_user  and cc_program_input.input_detail=cc_program_eval.input_detail_c where input_user='$unit' and input_detail='$namaprogram'");
+		$hasil = $this->db->query("SELECT * FROM cc_program_eval JOIN cc_program on cc_program_eval.input_user_c=cc_program.unit  and cc_program.cc_detail=cc_program_eval.input_detail_c where unit='$unit' and cc_detail='$namaprogram'");
 		if($hasil->num_rows() > 0){
 			return $hasil->result();
 		}
@@ -130,9 +130,9 @@ class model_users extends CI_Model {
                           $sudah=mysqli_query($con, "SELECT * FROM cc_program_input where input_user='$user' and input_detail='$xmen'");
                               $gap=mysqli_query($con, "SELECT * FROM cc_program_eval where input_user_c='$user' and input_detail_c='$xmen'");
 */
-    public function jumlah_program_jalan() {
+    public function jumlah_program_jalan($user) {
 		//Query mencari record berdasarkan ID
-		$hasil = $this->db->query("SELECT * FROM cc_program where status='Default'");
+		$hasil = $this->db->query("SELECT * FROM cc_program where status='Default' AND unit='$user'");
 		if($hasil->num_rows() > 0){
 			return $hasil->num_rows();
 		}
@@ -140,9 +140,9 @@ class model_users extends CI_Model {
 			return array();
 		}
 	}
-	public function program_jalan() {
+	public function program_jalan($user) {
 		//Query mencari record berdasarkan ID
-		$hasil = $this->db->query("SELECT * FROM cc_program where status='Default'");
+		$hasil = $this->db->query("SELECT * FROM cc_program where status='Default' AND unit='$user'");
 		if($hasil->num_rows() > 0){
 			return $hasil->result();
 		}
@@ -164,6 +164,28 @@ class model_users extends CI_Model {
 	public function program_unit($user) {
 		//Query mencari record berdasarkan ID
 		$hasil = $this->db->query("select * from cc_program a LEFT JOIN (SELECT input_user_c,input_detail_c,input_target,input_satuan, AVG(input_realisasi_) AS persen_realisasi,AVG(input_gap) AS persen_gap FROM `cc_program_eval` a JOIN cc_program_input b on a.input_detail_c=b.input_detail where input_user_c='$user' GROUP BY input_detail_c)b on a.cc_detail = b.input_detail_c where a.status='Default'");
+		if($hasil->num_rows() > 0){
+			return $hasil->result();
+		}
+		else {
+			return array();
+		}
+	}
+    
+    public function prioritas_unit($user) {
+		//Query mencari record berdasarkan ID
+		$hasil = $this->db->query("SELECT * FROM cc_program_eval JOIN cc_program on cc_program_eval.input_user_c=cc_program.unit  and cc_program.cc_detail=cc_program_eval.input_detail_c where unit='$user'");
+		if($hasil->num_rows() > 0){
+			return $hasil->result();
+		}
+		else {
+			return array();
+		}
+	}
+    
+    public function avg_unit($user) {
+		//Query mencari record berdasarkan ID
+		$hasil = $this->db->query("SELECT avg(input_realisasi_) AS rata_unit FROM cc_program_eval JOIN cc_program on cc_program_eval.input_user_c=cc_program.unit  and cc_program.cc_detail=cc_program_eval.input_detail_c where unit='$user'");
 		if($hasil->num_rows() > 0){
 			return $hasil->result();
 		}
