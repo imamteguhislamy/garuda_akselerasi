@@ -35,6 +35,38 @@ class admin extends CI_Controller {
         $this->load->library('form_validation');
 	}
 
+	public function index(){
+		$data['jawa'] = $this->model_admin->listjawa();	
+		$data['jakarta'] = $this->model_admin->listjakarta();	
+		$data['kalimantan'] = $this->model_admin->listkalimantan();	
+		$data['sumatera'] = $this->model_admin->listsumatra();	
+		$data['HO'] = $this->model_admin->listho();	
+		$data['progres'] = $this->model_admin->progresHO();
+		$data['progresbo'] = $this->model_admin->progresBO();
+		$data['progresvparea'] = $this->model_admin->progresVPAREA();
+		$data['progrescorporate'] = $this->model_admin->progrescorporate();
+		$data['progreshead'] = $this->model_admin->progresHead();
+		$data['progresbranch'] = $this->model_admin->progresBranch();
+
+		$bobot['bobot'] = $this->model_admin->bobot()->result();
+		foreach ($bobot['bobot'] as $b) {
+			$data['leaderhead'] = $this->model_admin->leaderHead($b->bobot1,$b->bobot2,$b->bobot3,$b->bobot4,$b->bobot5,$b->bobot6);
+		}
+		foreach ($bobot['bobot'] as $a) {
+			$data['leaderbranch'] = $this->model_admin->leaderbranch($a->bobot1,$a->bobot2,$a->bobot3,$a->bobot4,$a->bobot5,$a->bobot6);
+		}
+		$data['programho'] = $this->model_users->program_unitho();
+		$data['programjkt'] = $this->model_users->program_unitjkt();
+		$data['programkal'] = $this->model_users->program_unitkal();
+		$data['programsum'] = $this->model_users->program_unitsum();
+		$data['programjaw'] = $this->model_users->program_unitjaw();
+
+		// $this->load->view('admin/new/sidebar');
+		// $this->load->view('admin/new/header');		
+		$this->load->view('admin/new/dashboard',$data);
+		// $this->load->view('admin/new/footer');
+	}
+
 	public function dashboard(){
 		$data['jawa'] = $this->model_admin->listjawa();	
 		$data['jakarta'] = $this->model_admin->listjakarta();	

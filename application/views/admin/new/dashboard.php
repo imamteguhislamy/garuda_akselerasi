@@ -158,7 +158,7 @@ include('connection/conn.php');
                         <!-- END Spedometer -->
 
                         <!-- Culture Program Aktif -->
-                        <div class="col-md-2 col-sm-2 col-xs-12">
+                        <!-- <div class="col-md-2 col-sm-2 col-xs-12">
                             <div class="widget red-bg p-lg text-center">
                                 <?php
                                 $cc=mysqli_query($con, "SELECT * FROM cc_program where status= 'Default'");
@@ -173,11 +173,11 @@ include('connection/conn.php');
                                     <h3 class="font-bold no-margins">Culture Program Aktif</h3>
                                 </div>
                             </div>  
-                        </div>
+                        </div> -->
                         <!-- END Culture Program Aktif -->
 
                         <!-- Top 3 Head Office -->                        
-                        <div class="col-md-5 col-sm-5 col-xs-12">
+                        <!-- <div class="col-md-5 col-sm-5 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
                                     <h2 style='font-weight: bold'>Top 3 Head Office</h2>
@@ -253,11 +253,11 @@ include('connection/conn.php');
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- END Top 3 Head Office -->
 
                         <!-- Top 3 Branch Office -->                        
-                        <div class="col-md-5 col-sm-5 col-xs-12">
+                        <!-- <div class="col-md-5 col-sm-5 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
                                     <h2 style='font-weight: bold'>Top 3 Branch Office</h2>
@@ -333,7 +333,7 @@ include('connection/conn.php');
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- END Top 3 Branch Office -->
                     </div>
                 </div>
