@@ -5875,6 +5875,7 @@ button.close {
   right: 0;
   bottom: 0;
   left: 0;
+  x-index: relative;
   z-index: 1050;
   display: none;
   overflow: hidden;
