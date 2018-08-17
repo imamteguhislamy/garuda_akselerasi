@@ -76,13 +76,13 @@ include('connection/conn.php');
                             <li><a href="<?php echo base_url()?>admin/branch_office_kalimantan"></i> Kalimantan, Sulawesi, dan Papua</a></li>
                         </ul>
                     </li>
-                    <li>
+                   <!--  <li>
                         <a href=""><i class="fas fa-tasks"></i> <span class="nav-label">Average Progress</span><span class="fa fa-caret-down pull-right"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="<?php echo base_url()?>admin/average_direktorat"></i> Direktorat</a></li>
                             <li><a href="<?php echo base_url()?>admin/average_vparea"></i> VP Area</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </nav>

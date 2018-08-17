@@ -46,6 +46,7 @@
                 <div class="container " style="color:black">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <h3>Garuda Acceleration Program</h3> 
+                        <h4>Selamat Datang</h4> 
                         <br>
                         <div class="x_panel" style="border-top: 6px solid #4F8BB1;">
                             <div class="x_content">
