@@ -291,24 +291,6 @@ class admin extends CI_Controller {
 		//$this->load->view('admin/new/footer');
 	}
 
-	function progress_program($unit)
-	{	
-		$month = 7;
-		//print_r($month);
-		$data["unit"]=$unit;
-		$user = $unit;
-		$data['jumlahprogram']	= $this->model_users->jumlah_program_jalan();
-		$data['nilairealisasi']	= $this->model_users->program_unit($unit);
-		$data['program'] = $this->model_users->program_unit($unit);
-		$data['programdefault'] = $this->model_users->program_jalan();
-		$data['max'] = $this->model_users->max_bulan();
-		/*if(!$data['nilairealisasi']) { $data['rerata'] =0; } else {
-		$data['rerata'] = $data['nilairealisasi'][0]->Total/$data['jumlahprogram']; }*/
-		//print_r($data['program']);exit();
-
-		$this->load->view('admin/progress_program',$data);
-	}
-
 	public function logout()
 	{
 		$this->session->sess_destroy();
