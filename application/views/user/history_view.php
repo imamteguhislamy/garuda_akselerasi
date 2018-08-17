@@ -60,7 +60,7 @@ include('connection/conn.php');
               <div class="x_panel" style="border-top: 6px solid #4F8BB1;">
 
                 <div class="x_content" >
-                  <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                  <div class="col-md-5 col-sm-3 col-xs-12 profile_left">
                     <div class="x_title" style="text-align:center">
                       <h4 >Index Pencapaian Unit</h4>
                       <div class="clearfix"></div>
@@ -68,10 +68,10 @@ include('connection/conn.php');
                     <div class="x_content">
 
                       <div style="text-align: center; margin-bottom: 17px">
-                        <?php $ppp=0; for ($i=0; $i <count($program) ; $i++) {
-                            if ($program[$i]->persen_realisasi) $ppp=$ppp+$program[$i]->persen_realisasi;
-                        } ?>
-                        <span class="chart" data-percent="<?php echo $ppp/count($program); ?>">
+                        
+                          
+                          
+                        <span class="chart" data-percent="<?php echo $avg_unit[0]->rata_unit; ?>">
                           <span class="percent"></span>
                         </span>persen
                       </div>
@@ -84,7 +84,7 @@ include('connection/conn.php');
                     </div>
                     <br>
                   </div>
-                  <div class="col-md-9 col-sm-9 col-xs-12">
+                  <div class="col-md-7 col-sm-9 col-xs-12">
 
                     <div class="profile_title">
                       <div class="col-md-6">
@@ -101,6 +101,7 @@ include('connection/conn.php');
                             <th style="width:35%; text-align:center">Prioritas</th>
                             <th style="width:15%; text-align:center">Target</th>
                             <th style="width:15%; text-align:center">Satuan</th>
+                            <th style="width:15%; text-align:center">Realisasi</th>
                             <th style="width:15%; text-align:center">Gap (%)</th>
 
                           </tr>
@@ -123,6 +124,9 @@ include('connection/conn.php');
                                   <?php if (!$prioritas_unit[$i]->satuan) echo "-"; else echo $prioritas_unit[$i]->satuan; ?>
                                 </td>
                                 <td style="text-align:center">
+                                  <?php if (!$prioritas_unit[$i]->input_realisasi) echo "-"; else echo $prioritas_unit[$i]->input_realisasi; ?>
+                                </td>
+                                <td style="text-align:center">
                                   <?php echo round($prioritas_unit[$i]->input_gap);?>
                                 </td>
                                 </tr>
@@ -140,7 +144,7 @@ include('connection/conn.php');
                     <!-- after 1 -->
                     <div class="profile_title">
                       <div class="col-md-6">
-                        <h2>Program Progress History</h2>
+                        <h2>History Capaian Prioritas</h2>
                       </div>
 
                     </div>
@@ -392,6 +396,7 @@ include('connection/conn.php');
                     <br>
 
                     <!-- after 2 -->
+<!--
                     <div class="profile_title">
                       <div class="col-md-6">
                         <h2>Program Progress Feedback</h2>
@@ -399,6 +404,7 @@ include('connection/conn.php');
 
                     </div>
                     <br>
+-->
                     
                     <?php 
 
@@ -408,6 +414,7 @@ include('connection/conn.php');
                     {
 
                       ?>
+<!--
                       <table class="table table-hover" style="font-size:15px; border: 1px solid #D9DEE4">
                         <thead>
                           <tr>
@@ -449,7 +456,8 @@ include('connection/conn.php');
                           ?>
                         </tbody>
                       </table>
-                      <?php 
+-->
+                    <?php 
 
                     } else {
                       echo "<div class='x_panel'>";

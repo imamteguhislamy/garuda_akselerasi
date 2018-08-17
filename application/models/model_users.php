@@ -182,6 +182,17 @@ class model_users extends CI_Model {
 			return array();
 		}
 	}
+    
+    public function avg_unit($user) {
+		//Query mencari record berdasarkan ID
+		$hasil = $this->db->query("SELECT avg(input_realisasi_) AS rata_unit FROM cc_program_eval JOIN cc_program on cc_program_eval.input_user_c=cc_program.unit  and cc_program.cc_detail=cc_program_eval.input_detail_c where unit='$user'");
+		if($hasil->num_rows() > 0){
+			return $hasil->result();
+		}
+		else {
+			return array();
+		}
+	}
 
 	public function program_unitho() {
 		//Query mencari record berdasarkan ID
