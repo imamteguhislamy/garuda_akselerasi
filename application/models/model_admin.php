@@ -237,7 +237,7 @@ class model_admin extends CI_Model {
 	}
 
 	public function progresHead(){
-		$hasil = $this->db->query("SELECT 'HeadOffice',AVG(a.input_realisasi_) AS progress FROM (SELECT * FROM `cc_program_eval` a JOIN `cc_program` b on a.input_detail_c=b.cc_detail WHERE b.status='Default')a RIGHT JOIN unit b on a.input_user_c = b.kode_unit where b.kode_lokasi='HO' GROUP BY b.kode_dir ORDER BY kode_dir DESC");
+		$hasil = $this->db->query("SELECT 'HeadOffice',AVG(a.input_realisasi_) AS progress FROM (SELECT * FROM `cc_program_eval` a JOIN `cc_program` b on a.input_detail_c=b.cc_detail WHERE b.status='Default')a RIGHT JOIN unit b on a.input_user_c = b.kode_unit where b.kode_lokasi='HO'");
 		if($hasil->num_rows() > 0){
 			return $hasil->result();
 		}
@@ -248,7 +248,7 @@ class model_admin extends CI_Model {
 
 
 	public function progresBranch(){
-		$hasil = $this->db->query("SELECT 'BranchOffice',AVG(a.input_realisasi_) AS progress FROM (SELECT * FROM `cc_program_eval` a JOIN `cc_program` b on a.input_detail_c=b.cc_detail WHERE b.status='Default')a RIGHT JOIN unit b on a.input_user_c = b.kode_unit where b.kode_lokasi!='HO' GROUP BY b.kode_dir ORDER BY kode_dir DESC");
+		$hasil = $this->db->query("SELECT 'BranchOffice',AVG(a.input_realisasi_) AS progress FROM (SELECT * FROM `cc_program_eval` a JOIN `cc_program` b on a.input_detail_c=b.cc_detail WHERE b.status='Default')a RIGHT JOIN unit b on a.input_user_c = b.kode_unit where b.kode_lokasi!='HO'");
 		if($hasil->num_rows() > 0){
 			return $hasil->result();
 		}

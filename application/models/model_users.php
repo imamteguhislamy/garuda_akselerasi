@@ -207,13 +207,9 @@ class model_users extends CI_Model {
 
 	public function program_unitho() {
 		//Query mencari record berdasarkan ID
-		$hasil = $this->db->query("select * from (SELECT * FROM cc_program a 
-LEFT JOIN (SELECT input_user_c,input_detail_c,input_target,input_satuan, AVG(input_realisasi_) 
-           AS persen_realisasi,AVG(input_gap) 
-           AS persen_gap FROM `cc_program_eval` a 
-           JOIN cc_program_input b on a.input_detail_c=b.input_detail 
-           GROUP BY input_user_c)b on a.cc_detail = b.input_detail_c where a.status='Default' 
-           GROUP BY input_user_c ) a JOIN unit b ON a.input_user_c = b.kode_unit WHERE b.kode_lokasi='HO'");
+		$hasil = $this->db->query("SELECT * FROM (SELECT a.unit, a.cc_detail, a.target, a.satuan, a.status, b.input_user_c, b.input_detail_c, AVG(b.input_realisasi_) AS persen_realisasi, AVG(b.input_gap) AS persen_gap FROM cc_program a 
+    JOIN cc_program_eval b ON a.cc_detail=b.input_detail_c GROUP BY b.input_user_c) c 
+           JOIN unit d ON c.input_user_c = d.kode_unit WHERE d.kode_lokasi='HO'");
 		if($hasil->num_rows() > 0){
 			return $hasil->result();
 		}
@@ -224,13 +220,9 @@ LEFT JOIN (SELECT input_user_c,input_detail_c,input_target,input_satuan, AVG(inp
 
 	public function program_unitjkt() {
 		//Query mencari record berdasarkan ID
-		$hasil = $this->db->query("select * from (SELECT * FROM cc_program a 
-LEFT JOIN (SELECT input_user_c,input_detail_c,input_target,input_satuan, AVG(input_realisasi_) 
-           AS persen_realisasi,AVG(input_gap) 
-           AS persen_gap FROM `cc_program_eval` a 
-           JOIN cc_program_input b on a.input_detail_c=b.input_detail 
-           GROUP BY input_user_c)b on a.cc_detail = b.input_detail_c where a.status='Default' 
-           GROUP BY input_user_c ) a JOIN unit b ON a.input_user_c = b.kode_unit WHERE b.kode_lokasi!='HO' AND b.kode_lokasi!='SUBAM' AND b.kode_lokasi!='UPGAM' AND b.kode_lokasi!='MESAM'");
+		$hasil = $this->db->query("SELECT * FROM (SELECT a.unit, a.cc_detail, a.target, a.satuan, a.status, b.input_user_c, b.input_detail_c, AVG(b.input_realisasi_) AS persen_realisasi, AVG(b.input_gap) AS persen_gap FROM cc_program a 
+    JOIN cc_program_eval b ON a.cc_detail=b.input_detail_c GROUP BY b.input_user_c) c 
+           JOIN unit d ON c.input_user_c = d.kode_unit WHERE d.kode_lokasi!='HO' AND d.kode_lokasi!='SUBAM' AND d.kode_lokasi!='UPGAM' AND d.kode_lokasi!='MESAM'");
 		if($hasil->num_rows() > 0){
 			return $hasil->result();
 		}
@@ -241,13 +233,9 @@ LEFT JOIN (SELECT input_user_c,input_detail_c,input_target,input_satuan, AVG(inp
 
 	public function program_unitkal() {
 		//Query mencari record berdasarkan ID
-		$hasil = $this->db->query("select * from (SELECT * FROM cc_program a 
-LEFT JOIN (SELECT input_user_c,input_detail_c,input_target,input_satuan, AVG(input_realisasi_) 
-           AS persen_realisasi,AVG(input_gap) 
-           AS persen_gap FROM `cc_program_eval` a 
-           JOIN cc_program_input b on a.input_detail_c=b.input_detail 
-           GROUP BY input_user_c)b on a.cc_detail = b.input_detail_c where a.status='Default' 
-           GROUP BY input_user_c ) a JOIN unit b ON a.input_user_c = b.kode_unit WHERE b.kode_lokasi='UPGAM'");
+		$hasil = $this->db->query("SELECT * FROM (SELECT a.unit, a.cc_detail, a.target, a.satuan, a.status, b.input_user_c, b.input_detail_c, AVG(b.input_realisasi_) AS persen_realisasi, AVG(b.input_gap) AS persen_gap FROM cc_program a 
+    JOIN cc_program_eval b ON a.cc_detail=b.input_detail_c GROUP BY b.input_user_c) c 
+           JOIN unit d ON c.input_user_c = d.kode_unit WHERE d.kode_lokasi='UPGAM'");
 		if($hasil->num_rows() > 0){
 			return $hasil->result();
 		}
@@ -258,13 +246,9 @@ LEFT JOIN (SELECT input_user_c,input_detail_c,input_target,input_satuan, AVG(inp
 
 	public function program_unitsum() {
 		//Query mencari record berdasarkan ID
-		$hasil = $this->db->query("select * from (SELECT * FROM cc_program a 
-LEFT JOIN (SELECT input_user_c,input_detail_c,input_target,input_satuan, AVG(input_realisasi_) 
-           AS persen_realisasi,AVG(input_gap) 
-           AS persen_gap FROM `cc_program_eval` a 
-           JOIN cc_program_input b on a.input_detail_c=b.input_detail 
-           GROUP BY input_user_c)b on a.cc_detail = b.input_detail_c where a.status='Default' 
-           GROUP BY input_user_c ) a JOIN unit b ON a.input_user_c = b.kode_unit WHERE b.kode_lokasi='MESAM'");
+		$hasil = $this->db->query("SELECT * FROM (SELECT a.unit, a.cc_detail, a.target, a.satuan, a.status, b.input_user_c, b.input_detail_c, AVG(b.input_realisasi_) AS persen_realisasi, AVG(b.input_gap) AS persen_gap FROM cc_program a 
+    JOIN cc_program_eval b ON a.cc_detail=b.input_detail_c GROUP BY b.input_user_c) c 
+           JOIN unit d ON c.input_user_c = d.kode_unit WHERE d.kode_lokasi='MESAM'");
 		if($hasil->num_rows() > 0){
 			return $hasil->result();
 		}
@@ -275,13 +259,9 @@ LEFT JOIN (SELECT input_user_c,input_detail_c,input_target,input_satuan, AVG(inp
 
 	public function program_unitjaw() {
 		//Query mencari record berdasarkan ID
-		$hasil = $this->db->query("select * from (SELECT * FROM cc_program a 
-LEFT JOIN (SELECT input_user_c,input_detail_c,input_target,input_satuan, AVG(input_realisasi_) 
-           AS persen_realisasi,AVG(input_gap) 
-           AS persen_gap FROM `cc_program_eval` a 
-           JOIN cc_program_input b on a.input_detail_c=b.input_detail 
-           GROUP BY input_user_c)b on a.cc_detail = b.input_detail_c where a.status='Default' 
-           GROUP BY input_user_c ) a JOIN unit b ON a.input_user_c = b.kode_unit WHERE b.kode_lokasi='SUBAM'");
+		$hasil = $this->db->query("SELECT * FROM (SELECT a.unit, a.cc_detail, a.target, a.satuan, a.status, b.input_user_c, b.input_detail_c, AVG(b.input_realisasi_) AS persen_realisasi, AVG(b.input_gap) AS persen_gap FROM cc_program a 
+    JOIN cc_program_eval b ON a.cc_detail=b.input_detail_c GROUP BY b.input_user_c) c 
+           JOIN unit d ON c.input_user_c = d.kode_unit WHERE d.kode_lokasi='SUBAM'");
 		if($hasil->num_rows() > 0){
 			return $hasil->result();
 		}

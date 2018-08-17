@@ -62,7 +62,7 @@ $user=$unit;
               <div class="x_panel" style="border-top: 6px solid #4F8BB1;">
 
                 <div class="x_content" >
-                  <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                  <div class="col-md-6 col-sm-3 col-xs-12 profile_left">
                     <div class="x_title" style="text-align:center">
                       <h4 >Index Pencapaian Unit</h4>
                       <div class="clearfix"></div>
@@ -70,24 +70,45 @@ $user=$unit;
                     <div class="x_content">
 
                       <div style="text-align: center; margin-bottom: 17px">
-                        <?php $ppp=0; for ($i=0; $i <count($program) ; $i++) {
-                            if ($program[$i]->persen_realisasi) $ppp=$ppp+$program[$i]->persen_realisasi;
-                            $persenbar=$ppp/count($program); 
-                        } ?>
-                        <span class="chart" data-percent="<?php echo $persenbar; ?>">
+                        
+                          
+                          
+                        <span class="chart" data-percent="<?php echo $avg_unit[0]->rata_unit; ?>">
                           <span class="percent"></span>
                         </span>persen
                       </div>
                     </div>
-                    <h3 style="text-align:center"><?php echo $username; ?></h3>
+                    <h3 style="text-align:center"><?php echo $this->session->userdata('username'); ?></h3>
                     <div class="divider"></div>
                     <br />
                     <div style="text-align:center">
-                      <a href="<?php echo base_url()?>admin"><button type="submit" class="btn btn-primary btn-xs" style="width: 80% ; font-size: 100%" >Kembali</button></a>
+                      <a href="<?php echo base_url()?>user"><button type="submit" class="btn btn-primary btn-xs" style="width: 80% ; font-size: 100%" >Kembali</button></a>
                     </div>
                     <br>
                   </div>
-                  <div class="col-md-9 col-sm-9 col-xs-12">
+
+
+
+
+                  <div class="col-md- col-sm-6 col-xs-12 widget-text-box">
+            <div class="x_panel" >
+              <div class="x_title" style="text-align:center">
+                <h3 >Pencapaian Prioritas</h3>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <div id="priority1bar" style="height:370px;"></div>
+                <div style="text-align:center">
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+                  <div class="col-md-12 col-sm-9 col-xs-12">
 
                     <div class="profile_title">
                       <div class="col-md-6">
@@ -95,162 +116,68 @@ $user=$unit;
                       </div>
 
                     </div>
-                    <div class="x_panel ui-ribbon-container ">
-
-                  <div class="x_content">
-                   <?php 
-
-                   $cc=mysqli_query($con, "SELECT * FROM cc_program where status= 'Default'");
-                   if (mysqli_num_rows($cc)>0){
-
-                     ?>
-                     <table class="table table-hover" style="font-size:14px">
-                      <thead>
-                        <tr>
-                          <th style="width:5%">#</th>
-                          <th style="width:35%">Program</th>
-                          <th style="width:15%; text-align:center">Target</th>
-                          <th style="width:15%; text-align:center">Satuan</th>
-                          <th style="width:15%; text-align:center">Gap (%)</th>
-                          <th style="width:10%; text-align:center">Opsi</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php 
-                        $no=1;
-                        while ($cc_program=mysqli_fetch_array($cc)) {
-                          $xmen=$cc_program['cc_detail'];
-
-                          ?>
+                    <br>
+                      <table class="table table-hover table-bordered" style="font-size:14px">
+                        <?php  if ($jumlahprogram!=0)  {?>
+                        <thead>
                           <tr>
-
-                            <?php
-                            $sudah=mysqli_query($con, "SELECT * FROM cc_program_input where input_user='$user' and input_detail='$xmen'");
-                            $gap=mysqli_query($con, "SELECT * FROM cc_program_eval where input_user_c='$user' and input_detail_c='$xmen'");
-                            $isimen=mysqli_fetch_array($sudah);
-                            $gapmen=mysqli_fetch_array($gap);
-                            
-                            ?>
-                            <th scope="row" style="text-align:center; vertical-align:middle"><?php echo $no++; ?></th>
-                            <td><?php echo $cc_program['cc_detail']; 
-                            if (mysqli_num_rows($sudah)>0) {
-
-                              ?></td>
-                              <td style="text-align:center">
-                                <?php echo $isimen['input_target'];?>
-                              </td> 
-                              <td style="text-align:center">
-                                <?php echo $isimen['input_satuan'];?>
-                              </td>
-                              <td style="text-align:center">
-                                <?php if(!$gapmen['input_gap']) echo "-"; else echo $gapmen['input_gap'];?>
-                              </td>
-                              <td class=" last" style="vertical-align: middle; text-align: center; ">
-
-                                <button type="button" class="btn btn-primary table-hover btn-xs" data-toggle="modal"  data-target="#isi<?php echo $cc_program['cc_id']?>">Isi Evaluasi</button>
-
-                              </td>
-                              <div class="modal fade" id="isi<?php echo $cc_program['cc_id']?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                                      <div class="modal-dialog modal-lg" role="document">
-                                                        <div class="modal-content">
-                                                          <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                            <h4 class="modal-title" id="myModalLabel">Isi Program</h4>
-                                                          </div>
-                                                          <div class="modal-body">
-                                                                <!-- Isi Modal -->
-                                                                <div class="box-body">
-                                                                <?php echo form_open_multipart('admin/progress_evaluasi')?>
-                                                                <div class="row">
-                                                                  <div class="col-md-6">
-                                                                      <div class="form-group" id="data_1">
-                                                                          <label>From</label>
-                                                                          <input type="input" name="dari" id="first-name" min="1" required class="form-control col-md-7 col-xs-12" value="<?php echo $this->session->userdata('username')?>" disabled="true">
-                                                                          <input type="hidden" class="form-control" name="dari" autocomplete="off" value="<?php echo $this->session->userdata('username')?>">
-                                                                      </div>
-                                                                  </div>  
-                                                                  <div class="col-md-6">
-                                                                      <div class="form-group" id="data_1">
-                                                                          <label>For</label>
-                                                                          <input type="input" name="untuk" id="first-name" min="1" required class="form-control col-md-7 col-xs-12" value="<?php echo $unit?>" disabled="true">
-                                                                          <input type="hidden" class="form-control" name="untuk" autocomplete="off" value="<?php echo $unit?>">
-                                                                      </div>
-                                                                  </div>  
-                                                                  <div class="col-md-12">
-                                                                      <div class="form-group" id="data_1">
-                                                                          <label>Subject</label>
-                                                                          <input type="input" name="subjek" id="first-name" min="1" required class="form-control col-md-7 col-xs-12" value="<?php echo $cc_program['cc_detail']?>" disabled="true">
-                                                                          <input type="hidden" name="subjek" id="first-name" min="1" value="<?php echo $cc_program['cc_detail']?>">
-                                                                      </div>
-                                                                  </div>  
-                                                                  <div class="col-md-12">
-                                                                    <div class="form-group">
-                                                                      <h5>Message</h5>
-                                                                      <textarea id="desc" name="pesan" class="resizable_textarea form-control input" required></textarea>
-                                                                    </div>
-                                                                  </div> 
-                                                                  </div>
-                                                                <div class="modal-footer">
-                                                                    <button class="btn btn-primary" type="submit"><i class="fa fa-paper-plane "></i>  Submit</button>
-                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                                </div>
-                                                                <?php echo form_close()?>
-                                                          </div>
-                                                        </div>
-                                                      </div>
-                                                    </div>
-                                                    </div>
-                              <?php
-                            } else {
-                              ?>
-                              
-                              <td style="text-align:center">
-                                -
-                              </td> 
-                              <td style="text-align:center">
-                                -
-                              </td>
-                              <td style="text-align:center">
-                                -
-                              </td>
-                              <td class=" last" style="vertical-align: middle; text-align: center; ">
-                                -
-
-                              </td>
-                              <?php
-                            }
-                            ?>
-
+                            <th style="width:5%; text-align:center">#</th>
+                            <th style="width:35%; text-align:center">Prioritas</th>
+                            <th style="width:15%; text-align:center">Target</th>
+                            <th style="width:15%; text-align:center">Satuan</th>
+                            <th style="width:15%; text-align:center">Realisasi</th>
+                            <th style="width:15%; text-align:center">Gap (%)</th>
 
                           </tr>
-                          <?php
-                        }
-                        ?>
-                      </tbody>
-                    </table>
-                    <?php 
+                        </thead>
+                        <tbody> 
+                               <?php $ppp=0; for ($i=0; $i <count($prioritas_unit) ; $i++) { 
+                                $unit=$this->session->userdata('username');
+                                $xmen=$prioritas_unit[$i]->cc_detail;
+                               $sudah=mysqli_query($con, "SELECT * FROM cc_program where unit='$unit' and cc_detail='$xmen'");
+                              $gap=mysqli_query($con, "SELECT * FROM cc_program_eval where input_user_c='$unit' and input_detail_c='$xmen'");
+                              $isimen=mysqli_fetch_array($sudah);
+                              $gapmen=mysqli_fetch_array($gap);?>
+                               <tr>
+                              <td scope="row" style="text-align:center; vertical-align:middle"><?php echo $i+1; ?></td>
+                              <td><?php echo $prioritas_unit[$i]->input_detail_c?> </td>
+                              <td style="text-align:center">
+                                  <?php if (!$prioritas_unit[$i]->target) echo "-"; else echo $prioritas_unit[$i]->target; $ppp=$ppp+$prioritas_unit[$i]->target;?>
+                                </td> 
+                                <td style="text-align:center">
+                                  <?php if (!$prioritas_unit[$i]->satuan) echo "-"; else echo $prioritas_unit[$i]->satuan; ?>
+                                </td>
+                                <td style="text-align:center">
+                                  <?php if (!$prioritas_unit[$i]->input_realisasi) echo "-"; else echo $prioritas_unit[$i]->input_realisasi; ?>
+                                </td>
+                                <td style="text-align:center">
+                                  <?php echo round($prioritas_unit[$i]->input_gap);?>
+                                </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                      </table>
+                      <?php 
 
-                  } else {
-                    echo "Saat ini tidak ada program berjalan";
-                  }
-                  ?>
-                </div>
-              </div>
+                    } else {
+                      echo "Saat ini tidak ada program berjalan";
+                    }
+                    ?>
 
 
                     <!-- after 1 -->
                     <div class="profile_title">
                       <div class="col-md-6">
-                        <h2>Program Progress History</h2>
+                        <h2>History Capaian Prioritas</h2>
                       </div>
 
                     </div>
                     <br>
                     <?php 
                     $p=count($programdefault);
-                    $cc=mysqli_query($con, "SELECT * FROM cc_program where status= 'Default'");
+                    $cc=mysqli_query($con, "SELECT * FROM cc_program where status= 'Default' and unit='$unit'");
                     $cc2=mysqli_query($con, "SELECT MAX(cc_time) as max FROM cc_program where status= 'Default'");
-                    $cc3=mysqli_query($con, "SELECT * FROM cc_program where status= 'Default'");
+                    $cc3=mysqli_query($con, "SELECT * FROM cc_program where status= 'Default' and unit='$unit'");
                     if ($p>0)
                     {
                       $max=$max[0]->max;
@@ -268,45 +195,18 @@ $user=$unit;
                           <tr>
                             <?php
                             $x=1;
-                            while ($x <= $max) {
+                            while ($x <= $max-9) {
                               if ($bulan>12) {
                                 $bulan=$bulan-12;
                               }
                               if ($bulan==1) {
-                                $bulan1='Jan';
-                              }
-                              if ($bulan==2) {
-                                $bulan1='Feb';
-                              }
-                              if ($bulan==3) {
-                                $bulan1='Mar';
-                              }
-                              if ($bulan==4) {
-                                $bulan1='Apr';
-                              }
-                              if ($bulan==5) {
-                                $bulan1='Mei';
-                              }
-                              if ($bulan==6) {
-                                $bulan1='Jun';
-                              }
-                              if ($bulan==7) {
-                                $bulan1='Jul';
-                              }
-                              if ($bulan==8) {
                                 $bulan1='Agu';
                               }
-                              if ($bulan==9) {
+                              if ($bulan==2) {
                                 $bulan1='Sep';
                               }
-                              if ($bulan==10) {
+                              if ($bulan==3) {
                                 $bulan1='Okt';
-                              }
-                              if ($bulan==11) {
-                                $bulan1='Nov';
-                              }
-                              if ($bulan==12) {
-                                $bulan1='Des';
                               }
                               ?>
                               <th style=" text-align:center"><?php echo $bulan1;?></th>
@@ -330,16 +230,16 @@ $user=$unit;
                               $sudah=mysqli_query($con, "SELECT * FROM cc_program_eval JOIN cc_program_input on cc_program_eval.input_user_c=cc_program_input.input_user  and cc_program_input.input_detail=cc_program_eval.input_detail_c where input_user='$unit' and input_detail='$xmen' ORDER BY input_id DESC");
                         
 
-                              $cc4=mysqli_query($con, "SELECT * FROM cc_program where status= 'Default'");
+                              $cc4=mysqli_query($con, "SELECT * FROM cc_program where status= 'Default' and unit='$unit'");
                               $bulan2=mysqli_fetch_array($cc4 )['start_month'];
-                              $bulan2= 12;
+                              $bulan2= 19;
 
                               ?>
                               <th scope="row" style="text-align:center; vertical-align:middle"><?php echo $no++; ?></th>
                               <td><?php echo $cc_program['cc_detail'];?></td>
                               <?php
                               $o2=1;
-                              while ($o2 <= $max) {
+                              while ($o2 <= $max-9) {
                                 ?>
                                 <td style="text-align:center">
                                   <?php 
@@ -352,9 +252,9 @@ $user=$unit;
                                   }
 
                                   $pro=$cc_program['cc_detail'];
-                                  $cc5=mysqli_query($con, "SELECT * FROM cc_program_eval where input_user_c='$unit'  and input_bulan='$bulan2' and input_detail_c='$pro'");
+                                  $cc5=mysqli_query($con, "SELECT * FROM cc_program_eval where input_user_c='$unit' and input_bulan='$bulan2' and input_detail_c='$pro'");
 
-                                  $isi5=mysqli_fetch_array($cc5 )['input_realisasi_'];
+                                  $isi5=mysqli_fetch_array($cc5)['input_realisasi_'];
                                   if ($isi5==null && empty($isi5)) {
                                     echo "-";
                                   } else {
@@ -379,7 +279,7 @@ $user=$unit;
                     }
                     ?>
 
-                    <?php 
+                    <!-- <?php 
 
                     $cc=mysqli_query($con, "SELECT * FROM cc_program where status= 'Default'");
                     $cc2=mysqli_query($con, "SELECT MAX(cc_time) as max FROM cc_program where status= 'Default'");
@@ -455,12 +355,13 @@ $user=$unit;
                           $no=1;
                           while ($cc_program=mysqli_fetch_array($cc)) {
                             $xmen=$cc_program['cc_detail'];
+
                             ?>
                             <tr>
 
                               <?php
-                              $user=$username;
-                              $sudah=mysqli_query($con, "SELECT * FROM cc_program_eval JOIN cc_program_input on cc_program_eval.input_user_c=cc_program_input.input_user  and cc_program_input.input_detail=cc_program_eval.input_detail_c where input_user='$user' and input_detail='$xmen'");
+                              $user=$this->session->userdata('username');
+                              $sudah=mysqli_query($con, "SELECT * FROM cc_program_eval JOIN cc_program on cc_program_eval.input_user_c=cc_program.unit  and cc_program.cc_detail=cc_program_eval.cc_detail_c where unit='$user' and cc_detail='$xmen'");
                               
                               $isimen=mysqli_fetch_array($sudah);
                               $gapmen=mysqli_fetch_array($gap);
@@ -487,7 +388,7 @@ $user=$unit;
                                   }
 
                                   $pro=$cc_program['cc_detail'];
-                                  $cc5=mysqli_query($con, "SELECT * FROM cc_program_eval where input_user_c='$user'  and input_bulan='$bulan2' and input_detail_c='$pro'");
+                                  $cc5=mysqli_query($con, "SELECT * FROM cc_program_eval where input_user_c='$user'  and input_bulan='$bulan2' and cc_detail_c='$pro'");
 
                                   $isi5=mysqli_fetch_array($cc5 )['input_attach'];
                                   if ($isi5==null && empty($isi5)) {
@@ -513,12 +414,85 @@ $user=$unit;
                       echo "Saat ini tidak ada program berjalan";
                     }
                     ?>
-                    <p>* Klik pada "file" untuk mengunduh Evidence</p>
+                    <p>* Klik pada "file" untuk mengunduh Evidence</p> -->
                     <!-- after 1 -->
 
                     <br>
 
+                    <!-- after 2 -->
+<!--
+                    <div class="profile_title">
+                      <div class="col-md-6">
+                        <h2>Program Progress Feedback</h2>
+                      </div>
+
+                    </div>
+                    <br>
+-->
                     
+                    <?php 
+
+                    $fb=mysqli_query($con, "SELECT * FROM cc_program_feedback where fb_recipient= '$user'");
+                    
+                    if (mysqli_num_rows($fb)>0)
+                    {
+
+                      ?>
+<!--
+                      <table class="table table-hover" style="font-size:15px; border: 1px solid #D9DEE4">
+                        <thead>
+                          <tr>
+                            <th style="width:5%; text-align:center">#</th>
+                            <th style="width:70%; text-align:center">Subject</th>
+                            <th style="width:20%; text-align:center">Detail</th>
+                            <th style="width:5%; text-align:center"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php 
+                          $no=1;
+                          while ($fb_=mysqli_fetch_array($fb)) {
+                            $id_pesan=$fb_['fb_id'];
+                            if ($fb_['status']=='unread') {
+
+                              ?>
+                              <tr >
+                                <th scope="row" style="text-align:center; vertical-align:middle"><?php echo $no++; ?></th>
+                                <td style="text-align:center; vertical-align:middle"><a href="<?php echo base_url()?>user/feedback/<?php echo $fb_['fb_id']?>"><b><?php echo $fb_['fb_subject']; ?></b></a></td>
+                                <td style="text-align:center; vertical-align:middle"><a href="<?php echo base_url()?>user/feedback/<?php echo $fb_['fb_id']?>">Lihat</a></td>
+                                <td style="text-align:center; vertical-align:middle">
+                                  <i class="fa fa-circle" style="color:#b7b7b7"></i>
+                                </td>
+                              </tr>
+                              <?php
+                            } elseif ($fb_['status']=='read') {
+                              ?>
+                              <tr style="background-color: #f9f9f9; ">
+                                <td scope="row" style="text-align:center; vertical-align:middle"><?php echo $no++; ?></td>
+                                <td style="text-align:center; vertical-align:middle"><a href="<?php echo base_url()?>user/feedback/<?php echo $fb_['fb_id']?>"><b><?php echo $fb_['fb_subject']; ?></b></a></td>
+                                <td style="text-align:center; vertical-align:middle"><a href="<?php echo base_url()?>user/feedback/<?php echo $fb_['fb_id']?>">Lihat</a></td>
+                                <td style="text-align:center; vertical-align:middle"> 
+                                </td>
+                              </tr>
+                              <?php
+                            }
+                          }
+                          ?>
+                        </tbody>
+                      </table>
+-->
+                    <?php 
+
+                    } else {
+                      echo "<div class='x_panel'>";
+                      echo "<div class='x_content'>";
+                      echo "<p style='text-align:center'>Anda tidak memiliki Feedback</p>";
+                      echo "</div>";
+                      echo "</div>";
+                    }
+                    ?>
+
+                    <!-- after 2 -->
 
                   </div>
                 </div>
@@ -545,18 +519,31 @@ $user=$unit;
         </div>
         </div>
 
-    <!-- Mainly scripts -->
-    <script src="<?php echo base_url();?>js/jquery-2.1.1.js"></script>
-    <script src="<?php echo base_url();?>js/bootstrap.min.js"></script>
-    <script src="<?php echo base_url();?>js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="<?php echo base_url();?>js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-    <script src="<?php echo base_url();?>js/plugins/jeditable/jquery.jeditable.js"></script>
+   <script src="<?php echo base_url(); ?>js/jquery-2.1.1.js"></script>
+    <script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url(); ?>js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="<?php echo base_url(); ?>js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="<?php echo base_url(); ?>js/plugins/jeditable/jquery.jeditable.js"></script>
 
-    <script src="<?php echo base_url();?>js/plugins/dataTables/datatables.min.js"></script>
+    <script src="<?php echo base_url(); ?>js/plugins/dataTables/datatables.min.js"></script>
+    <script src="<?php echo base_url()?>js/plugins/jsKnob/jquery.knob.js"></script>
 
     <!-- Custom and plugin javascript -->
-    <script src="<?php echo base_url();?>js/inspinia.js"></script>
-    <script src="<?php echo base_url();?>js/plugins/pace/pace.min.js"></script>
+    <script src="<?php echo base_url(); ?>js/inspinia.js"></script>
+    <script src="<?php echo base_url(); ?>js/plugins/pace/pace.min.js"></script>
+
+    <!-- iCheck -->
+    <script src="<?php echo base_url(); ?>js/plugins/iCheck/icheck.min.js"></script>
+
+    <!-- Flot -->
+    <script src="<?php echo base_url(); ?>js/plugins/flot/jquery.flot.js"></script>
+    <script src="<?php echo base_url(); ?>js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="<?php echo base_url(); ?>js/plugins/flot/jquery.flot.resize.js"></script>
+    <script src="<?php echo base_url(); ?>js/plugins/flot/jquery.flot.pie.js"></script>
+         
+    <!-- ECharts -->
+    <script src="<?php echo base_url(); ?>vendors/echarts/dist/echarts.min.js"></script>
+    <script src="<?php echo base_url(); ?>vendors/echarts/map/js/world.js"></script>
     <style>
       .x_panel {
   position: relative;
@@ -597,5 +584,117 @@ $user=$unit;
     });
   });
   </script>
+
+
+  <script type="text/javascript">
+    var theme = {
+      color: [
+      '#26B99A', '#34495E', '#BDC3C7', '#3498DB',
+      '#9B59B6', '#8abb6f', '#759c6a', '#bfd3b7'
+      ],
+
+      textStyle: {
+        fontFamily: 'Arial, Verdana, sans-serif'
+      }
+    };
+
+    var echartGauge = echarts.init(document.getElementById('priority1bar'), theme);
+
+    echartGauge.setOption({
+    tooltip : {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['SKI']
+    },
+    toolbox: {
+        show : true,
+    },
+    calculable : true,
+    xAxis : [
+        {
+            type : 'category',
+            data : ['a', 'b', 'c'], 
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value',
+            min : 0,
+            max : 100
+        }
+    ],
+    series : [
+        {
+            name:'nama',
+            type:'bar',
+
+            // <?php 
+            // // if (count($pencapaian_unit) = null) {
+            // //   $val1 = 0;
+            // //   $val2 = 0;
+            // //   $val3 = 0;
+            // if (count($pencapaian_unit) = 1) {
+            //   $val1 = $pencapaian_unit[0];
+            //   $val2 = 0;
+            //   $val3 = 0;
+            // } else if (count($pencapaian_unit) = 2) {
+            //   $val1 = $pencapaian_unit[0];
+            //   $val2 = $pencapaian_unit[1];
+            //   $val3 = 0;
+            // } else if (count($pencapaian_unit) = 3) {
+            //   $val1 = $pencapaian_unit[0];
+            //   $val2 = $pencapaian_unit[1];
+            //   $val3 = $pencapaian_unit[2];
+            // } else {
+            //   $val1 = 0;
+            //   $val2 = 0;
+            //   $val3 = 0;
+            // }
+
+            // ?>
+
+            // <?php 
+            //   if($pencapaian_unit[0]->input_realisasi_ == NULL){
+            //     $val1 = 0;
+            //     $val2 = 0;
+            //     $val3 = 0;
+            //   }
+
+            //   if($pencapaian_unit[0]->input_realisasi_ != NULL && $pencapaian_unit[1]->input_realisasi_ == NULL){
+            //     $val1 = $pencapaian_unit[0];
+            //     $val2 = 0;
+            //     $val3 = 0;
+            //   }
+
+            //   if($pencapaian_unit[0]->input_realisasi_ != NULL && $pencapaian_unit[1]->input_realisasi_ != NULL && $pencapaian_unit[2]->input_realisasi_ == NULL){
+            //     $val1 = $pencapaian_unit[0]->input_realisasi_;
+            //     $val2 = $pencapaian_unit[1]->input_realisasi_;
+            //     $val3 = 0;
+            //   }
+
+            //   if($pencapaian_unit[0]->input_realisasi_ != NULL && $pencapaian_unit[1]->input_realisasi_ != NULL && $pencapaian_unit[2]->input_realisasi_ != NULL){
+            //     $val1 = $pencapaian_unit[0]->input_realisasi_;
+            //     $val2 = $pencapaian_unit[1]->input_realisasi_;
+            //     $val3 = $pencapaian_unit[2]->input_realisasi_;
+            //   }
+            // ?>
+
+
+
+            data:[<?php echo 75;?>, <?php echo 64;?>, <?php echo 90;?>],
+            markPoint : {
+                data : [
+                    {type : 'max', name: 'max'},
+                    {type : 'min', name: 'min'},
+                    {xAxis : '2', yAxis: 4.9, name: 'min', value: 4.9}
+                ]
+            },
+        },
+    ]
+  });
+  </script>
+
+
 </body>
 </html>
